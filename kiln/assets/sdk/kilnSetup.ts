@@ -56,7 +56,8 @@ interface KilnCallbacks {
 interface KilnSetup {
     API: typeof KilnAPI,
     Bridge: typeof KilnBridge,
-    Callbacks: KilnCallbacks
+    Callbacks: KilnCallbacks,
+    EditorSettings: KilnSettings
 }
 
 declare global {
@@ -68,7 +69,8 @@ declare global {
 cc.Kiln = {
     API: KilnAPI,
     Bridge: KilnBridge,
-    Callbacks: {} as KilnCallbacks
+    Callbacks: {} as KilnCallbacks,
+    EditorSettings: {} as KilnSettings
 }
 
 cc.resources.load("kiln/kilnSettings", (err, res: cc.JsonAsset) => {
@@ -77,6 +79,6 @@ cc.resources.load("kiln/kilnSettings", (err, res: cc.JsonAsset) => {
         cc.error(err);
     }
     else {
-        cc.Kiln.API.settings = res.json;
+        cc.Kiln.EditorSettings = res.json;
     }
 });

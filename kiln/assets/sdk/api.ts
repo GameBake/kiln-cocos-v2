@@ -1,6 +1,11 @@
 import { ILeaderboardEntry, IProduct, IPurchase, KilnBannerPosition, KilnBannerSize, KilnRewardedAdResponse } from "./bridge";
+import KilnBannerAdController from "./mock-platform/scripts/bannerAdController";
+import KilnInterstitialAdController from "./mock-platform/scripts/interstitialAdController";
+import KilnLeaderboard from "./mock-platform/scripts/leaderboard";
+import PlatformLeaderboardController from "./mock-platform/scripts/platformLeaderboardController";
+import KilnRewardedAdController from "./mock-platform/scripts/rewardedAdController";
 
-interface KilnLeaderboard {
+interface KilnLeaderboardSetting {
     id: string,
     ascending: boolean
 }
@@ -25,12 +30,28 @@ export interface KilnSettings {
     banners: Array<string>,
     rewarded: Array<string>,
     events: Array<string>,
-    leaderboards: Array<KilnLeaderboard>,
+    leaderboards: Array<KilnLeaderboardSetting>,
     iaps: Array<KilnIAP>
 }
 
 export class KilnAPI {
-    public static settings: KilnSettings;
+
+    private static _initialized: boolean = false;
+    private static _interstitialAds: Map<string, KilnInterstitialAdController> = new Map<string, KilnInterstitialAdController>();
+    private static _rewardedAds: Map<string, KilnRewardedAdController> = new Map<string, KilnRewardedAdController>();
+    private static _bannerAds: Map<string, KilnBannerAdController> = new Map<string, KilnBannerAdController>();
+    private static _leaderboards: Map<string, KilnLeaderboard> = new Map<string, KilnLeaderboard>();
+    // private static InAppPurchases _iap;
+    // public static InAppPurchases IAP { get { return _iap; } }
+
+    /**
+     * Throw an exception if SDK is not initialized
+     */
+    private static checkInitialized(): Promise<void>  {
+        if (!this._initialized) {
+            return Promise.reject(new Error("Kiln is not initialized."));
+        }
+    }
 
     /**
      * Initializes the SDK
@@ -40,6 +61,24 @@ export class KilnAPI {
             return cc.Kiln.Bridge.init();
         }
         else {
+            if (this._initialized) {
+                return Promise.reject(new Error("Kiln already initialized"));
+            }
+
+            this._initialized = true;
+
+            if (this.supportsLeaderboards()) {
+                cc.Kiln.EditorSettings.leaderboards.forEach((l) => {
+                    KilnLeaderboard.reset(l.id);
+                    const leaderboard = KilnLeaderboard.isSaved(l.id) ? KilnLeaderboard.load(l.id) : new KilnLeaderboard(l.id, 100, l.ascending);
+                    this._leaderboards.set(l.id, leaderboard);
+                });
+            }
+
+            if (this.supportsIAP()) {
+                // _iap = new InAppPurchases();
+            }
+
             return Promise.resolve();
         }
     }
@@ -53,7 +92,7 @@ export class KilnAPI {
             return cc.Kiln.Bridge.supportsInterstitialAds();
         }
         else {
-            return this.settings.supportsInterstitialsAds;
+            return cc.Kiln.EditorSettings.supportsInterstitialsAds;
         }
     }
 
@@ -66,7 +105,7 @@ export class KilnAPI {
             return cc.Kiln.Bridge.supportsRewardedAds();
         }
         else {
-            return this.settings.supportsRewardedAds;
+            return cc.Kiln.EditorSettings.supportsRewardedAds;
         }
     }
 
@@ -79,7 +118,7 @@ export class KilnAPI {
             return cc.Kiln.Bridge.supportsBannerAds();
         }
         else {
-            return this.settings.supportsBannerAds;
+            return cc.Kiln.EditorSettings.supportsBannerAds;
         }
     }
     
@@ -92,7 +131,7 @@ export class KilnAPI {
             return cc.Kiln.Bridge.supportsIAP();
         }
         else {
-            return this.settings.supportsIAPs;
+            return cc.Kiln.EditorSettings.supportsIAPs;
         }
     }
 
@@ -105,7 +144,7 @@ export class KilnAPI {
             return cc.Kiln.Bridge.supportsLeaderboards();
         }
         else {
-            return this.settings.supportsLeaderboards;
+            return cc.Kiln.EditorSettings.supportsLeaderboards;
         }
     }
 
@@ -118,7 +157,7 @@ export class KilnAPI {
             return cc.Kiln.Bridge.supportsPlatformLeaderboardsUI();
         }
         else {
-            return this.settings.supportsPlatformLeaderboardsUI;
+            return cc.Kiln.EditorSettings.supportsPlatformLeaderboardsUI;
         }
     }
 
@@ -133,7 +172,32 @@ export class KilnAPI {
             return cc.Kiln.Bridge.loadRewardedAd(identifier);
         }
         else {
-            // return true;
+            this.checkInitialized();
+            
+            return new Promise((resolve, reject) => {
+                if (!this.supportsRewardedAds()) {
+                    reject(new Error("Rewarded Ads not supported."));
+                }
+    
+                if (cc.Kiln.EditorSettings.rewarded.indexOf(identifier) == -1) {
+                    reject(new Error(`Invalid Rewarded Placement ID: ${identifier}`));
+                }
+
+                if (this._rewardedAds.get(identifier) != null) {
+                    reject(new Error(`Rewarded Placement ID: ${identifier} already loaded`));
+                }
+    
+                cc.resources.load("kiln/prefabs/KilnRewardedAd", (err, res: cc.Prefab) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    else {
+                        this._rewardedAds.set(identifier, cc.instantiate(res).getComponent("rewardedAdController"));
+
+                        return resolve();
+                    }
+                });
+            });
         }
     }
 
@@ -149,7 +213,25 @@ export class KilnAPI {
             return cc.Kiln.Bridge.showRewardedAd(identifier);
         }
         else {
-            // return true;
+            this.checkInitialized();
+            
+            return new Promise((resolve, reject) => {
+                if (!this.supportsRewardedAds()) {
+                    reject(new Error("Rewarded Ads not supported."));
+                }
+    
+                if (cc.Kiln.EditorSettings.rewarded.indexOf(identifier) == -1) {
+                    reject(new Error(`Invalid Rewarded Placement ID: ${identifier}`));
+                }
+    
+                if (this._rewardedAds.get(identifier) == null) {
+                    reject(new Error(`Rewarded Placement ID: ${identifier} not loaded`));
+                }
+                else {
+                    this._rewardedAds.get(identifier).show(identifier, (r: KilnRewardedAdResponse) => { return resolve(r) });
+                    this._rewardedAds.set(identifier, null);
+                }
+            });
         }
     }
     
@@ -165,7 +247,32 @@ export class KilnAPI {
             return cc.Kiln.Bridge.loadInterstitialdAd(identifier);
         }
         else {
-            // return true;
+            this.checkInitialized();
+            
+            return new Promise((resolve, reject) => {
+                if (!this.supportsInterstitialAds()) {
+                    reject(new Error("Interstitial Ads not supported."));
+                }
+    
+                if (cc.Kiln.EditorSettings.interstitials.indexOf(identifier) == -1) {
+                    reject(new Error(`Invalid Interstitial Placement ID: ${identifier}`));
+                }
+
+                if (this._interstitialAds.get(identifier) != null) {
+                    reject(new Error(`Interstitial Placement ID: ${identifier} already loaded`));
+                }
+    
+                cc.resources.load("kiln/prefabs/KilnInterstitialAd", (err, res: cc.Prefab) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    else {
+                        this._interstitialAds.set(identifier, cc.instantiate(res).getComponent("interstitialAdController"));
+
+                        return resolve();
+                    }
+                });
+            });
         }
     }
 
@@ -182,7 +289,25 @@ export class KilnAPI {
             return cc.Kiln.Bridge.showInterstitialAd(identifier);
         }
         else {
-            // return true;
+            this.checkInitialized();
+            
+            return new Promise((resolve, reject) => {
+                if (!this.supportsInterstitialAds()) {
+                    reject(new Error("Interstitial Ads not supported."));
+                }
+    
+                if (cc.Kiln.EditorSettings.interstitials.indexOf(identifier) == -1) {
+                    reject(new Error(`Invalid Interstitial Placement ID: ${identifier}`));
+                }
+    
+                if (this._interstitialAds.get(identifier) == null) {
+                    reject(new Error(`Interstitial Placement ID: ${identifier} not loaded`));
+                }
+                else {
+                    this._interstitialAds.get(identifier).show(identifier, () => { return resolve() });
+                    this._interstitialAds.set(identifier, null);
+                }
+            });
         }
     }
 
@@ -200,7 +325,33 @@ export class KilnAPI {
             return cc.Kiln.Bridge.loadBannerAd(identifier, position, maxSize);
         }
         else {
-            // return true;
+            this.checkInitialized();
+            
+            return new Promise((resolve, reject) => {
+                if (!this.supportsBannerAds()) {
+                    reject(new Error("Banner Ads not supported."));
+                }
+    
+                if (cc.Kiln.EditorSettings.banners.indexOf(identifier) == -1) {
+                    reject(new Error(`Invalid Banner Placement ID: ${identifier}`));
+                }
+
+                if (this._bannerAds.get(identifier) != null) {
+                    reject(new Error(`Banner Placement ID: ${identifier} already loaded`));
+                }
+    
+                cc.resources.load("kiln/prefabs/KilnBannerAd", (err, res: cc.Prefab) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    else {
+                        this._bannerAds.set(identifier, cc.instantiate(res).getComponent("bannerAdController"));
+                        this._bannerAds.get(identifier).configure(identifier, position, maxSize);
+
+                        return resolve();
+                    }
+                });
+            });
         }
     }
 
@@ -216,7 +367,26 @@ export class KilnAPI {
             return cc.Kiln.Bridge.showBannerAd(identifier);
         }
         else {
-            // return true;
+            this.checkInitialized();
+            
+            return new Promise((resolve, reject) => {
+                if (!this.supportsBannerAds()) {
+                    reject(new Error("Banner Ads not supported."));
+                }
+    
+                if (cc.Kiln.EditorSettings.banners.indexOf(identifier) == -1) {
+                    reject(new Error(`Invalid Banner Placement ID: ${identifier}`));
+                }
+    
+                if (this._bannerAds.get(identifier) == null) {
+                    reject(new Error(`Banner Placement ID: ${identifier} not loaded`));
+                }
+                else {
+                    this._bannerAds.get(identifier).showBanner();
+
+                    return resolve();
+                }
+            });
         }
     }
 
@@ -232,7 +402,26 @@ export class KilnAPI {
             return cc.Kiln.Bridge.hideBannerAd(identifier);
         }
         else {
-            // return true;
+            this.checkInitialized();
+            
+            return new Promise((resolve, reject) => {
+                if (!this.supportsBannerAds()) {
+                    reject(new Error("Banner Ads not supported."));
+                }
+    
+                if (cc.Kiln.EditorSettings.banners.indexOf(identifier) == -1) {
+                    reject(new Error(`Invalid Banner Placement ID: ${identifier}`));
+                }
+    
+                if (this._bannerAds.get(identifier) == null) {
+                    reject(new Error(`Banner Placement ID: ${identifier} not loaded`));
+                }
+                else {
+                    this._bannerAds.get(identifier).hideBanner();
+
+                    return resolve();
+                }
+            });
         }
      }
     
@@ -249,7 +438,27 @@ export class KilnAPI {
             return cc.Kiln.Bridge.destroyBannerAd(identifier);
         }
         else {
-            // return true;
+            this.checkInitialized();
+            
+            return new Promise((resolve, reject) => {
+                if (!this.supportsBannerAds()) {
+                    reject(new Error("Banner Ads not supported."));
+                }
+    
+                if (cc.Kiln.EditorSettings.banners.indexOf(identifier) == -1) {
+                    reject(new Error(`Invalid Banner Placement ID: ${identifier}`));
+                }
+    
+                if (this._bannerAds.get(identifier) == null) {
+                    reject(new Error(`Banner Placement ID: ${identifier} not loaded`));
+                }
+                else {
+                    this._bannerAds.get(identifier).destroyBanner();
+                    this._bannerAds.set(identifier, null);
+
+                    return resolve();
+                }
+            });
         }
     }
 
@@ -331,7 +540,19 @@ export class KilnAPI {
             return cc.Kiln.Bridge.getUserScore(leaderboardId);
         }
         else {
-            // return true;
+            this.checkInitialized();
+
+            return new Promise((resolve, reject) => {
+                if (!this.supportsLeaderboards()) {
+                    return reject("Leaderboards not supported.");
+                }
+    
+                if (!this._leaderboards.has(leaderboardId)) {
+                    return reject(`There's no Leaderboards with id ${leaderboardId}.`);
+                }
+
+                return resolve(this._leaderboards.get(leaderboardId).getUserScore());
+            });
         }
     }
 
@@ -348,10 +569,23 @@ export class KilnAPI {
             return cc.Kiln.Bridge.setUserScore(leaderboardId, score, data);
         }
         else {
-            // return true;
+            this.checkInitialized();
+
+            return new Promise((resolve, reject) => {
+                if (!this.supportsLeaderboards()) {
+                    return reject("Leaderboards not supported.");
+                }
+
+                if (!this._leaderboards.has(leaderboardId)) {
+                    return reject(`There's no Leaderboards with id ${leaderboardId}.`);
+                }
+
+                this._leaderboards.get(leaderboardId).setUserScore(score, data);
+
+                return resolve();
+            });
         }
     }
-
 
     /**
      * Retrieves a list of LeaderboardEntry for all players. If the platform doesn't 
@@ -361,12 +595,24 @@ export class KilnAPI {
      * @param offset Offset from the top of the Leaderboard that LeaderboardEntry will be fetched from
      * @returns Promise
      */
-    public static getScores(leaderboardId: string, amount: number, offset: number) {
+    public static getScores(leaderboardId: string, amount: number, offset: number): Promise<Array<ILeaderboardEntry>> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
             return cc.Kiln.Bridge.getScores(leaderboardId, amount, offset);
         }
         else {
-            // return true;
+            this.checkInitialized();
+            
+            return new Promise((resolve, reject) => {
+                if (!this.supportsLeaderboards()) {
+                    return reject("Leaderboards not supported.");
+                }
+
+                if (!this._leaderboards.has(leaderboardId)) {
+                    return reject(`There's no Leaderboards with id ${leaderboardId}.`);
+                }
+
+                return resolve(this._leaderboards.get(leaderboardId).getScores(amount, offset));
+            });
         }
     }
 
@@ -380,7 +626,23 @@ export class KilnAPI {
             return cc.Kiln.Bridge.showPlatformLeaderboardUI();
         }
         else {
-            // return true;
+            this.checkInitialized();
+            
+            return new Promise((resolve, reject) => {
+                if (!this.supportsPlatformLeaderboardsUI()) {
+                    return reject("Platform Leaderboard UI not supported.");
+                }
+
+                cc.resources.load("kiln/prefabs/KilnPlatformLeaderboard", (err, res: cc.Prefab) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    else {
+                        const platformLeaderboards: PlatformLeaderboardController = cc.instantiate(res).getComponent("platformLeaderboardController")
+                        platformLeaderboards.show(() => { return resolve(); });
+                    }
+                });
+            });
         }
     }
 
@@ -395,7 +657,7 @@ export class KilnAPI {
             return cc.Kiln.Bridge.submitAnalyticsEvent(eventId);
         }
         else {
-            // return true;
+            return Promise.resolve();
         }
     }
 }
