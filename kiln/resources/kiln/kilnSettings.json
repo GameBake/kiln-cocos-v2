@@ -1,0 +1,22 @@
+{
+    "supportsInterstitialsAds": true,
+    "supportsRewardedAds": true,
+    "supportsBannerAds": true,
+    "supportsLeaderboards": true,
+    "supportsPlatformLeaderboardsUI": true,
+    "supportsIAPs": true,
+    "interstitials": ["Interstitial 1", "Interstitial 2"],
+    "banners": ["Banner 1", "Banner 2"],
+    "rewarded": ["Rewarded 1", "Rewarded 2"],
+    "events": ["ID1", "ID2", "ID3", "ID4"],
+    "leaderboards": [
+        { "id": "leaderboard", "ascending": false },
+        { "id": "leaderboard2", "ascending": false }
+    ],
+    "iaps": [
+        { "id": "Non Consumable", "consumable": false, "price": "1000", "description": "Description", "imageURI": "ImageURI", "currencyCode": "GBP" },
+        { "id": "Consumable 1", "consumable": true, "price": "200", "description": "", "imageURI": "", "currencyCode": "GBP" },
+        { "id": "Consumable 2", "consumable": true, "price": "300", "description": "", "imageURI": "", "currencyCode": "GBP" },
+        { "id": "Consumable 3", "consumable": true, "price": "250", "description": "This is the third Consumable", "imageURI": "http://www.google.com", "currencyCode": "GBP"} 
+    ]
+}

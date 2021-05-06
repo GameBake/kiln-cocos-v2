@@ -1,0 +1,29 @@
+{
+    "name": "kiln-plugin",
+    "version": "0.0.1",
+    "description": "Kiln Cocos Creator Plugin SDK",
+    "author": "GameBake",
+    "main": "main.js",
+    "main-menu": {
+        "Kiln/Initialize Extension": {
+            "message": "kiln-plugin:initialize"
+        },
+        "Kiln/Settings": {
+            "message": "kiln-plugin:settings"
+        }
+    },
+    "panel": {
+        "main": "panel/index.js",
+        "type": "dockable",
+        "title": "Kiln Settings",
+        "width": 400,
+        "height": 300
+    },
+    "runtime-resource": {
+        "path": "assets",
+        "name": "sdk"
+    },
+    "reload": {
+        "ignore": ["assets/**/*"]
+    }
+}
