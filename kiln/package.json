@@ -25,5 +25,6 @@
     },
     "reload": {
         "ignore": ["assets/**/*"]
-    }
+    },
+    "scene-script": "sceneScript.js"
 }

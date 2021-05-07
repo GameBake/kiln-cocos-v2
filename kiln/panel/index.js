@@ -235,7 +235,10 @@ var editorPanel = {
                 this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
             },
             resetIAPs: function () {
-                Editor.log("Resetting IAPs !");
+                // Editor.log("Resetting IAPs !");
+                Editor.Scene.callSceneScript('kiln-plugin', 'reset-iaps', (result) => {
+                    Editor.warn(result);
+                });
             },
             addLeaderboard: (html) => {
                 if (!html) html = itemsHelper.newLeaderboard();
@@ -251,7 +254,11 @@ var editorPanel = {
                 this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
             },
             resetLeaderboard: function () {
-                Editor.log("Resetting Leaderboard !");
+                // Editor.log("Resetting Leaderboard !");
+                id = "leaderboard-id"
+                Editor.Scene.callSceneScript('kiln-plugin', 'reset-leaderboard', id, (result) => {
+                    Editor.warn(result);
+                });
             },
             addEvent: (html) => {
                 if (!html) html = itemsHelper.newEvent();

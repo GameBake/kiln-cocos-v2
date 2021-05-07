@@ -64,12 +64,11 @@ function initBuildTemplates(silent = false) {
  * @param {*} callback 
  */
 function onBuildStart(options, callback) {
-    const androidAssetPath = "/build-templates/jsb-link/frameworks/runtime-src/proj.android-studio/app/src/main/assets";
-
     const fs = require('fs');
-    const path = require('path'); 
+    const path = require('path');
+    
+    const androidAssetPath = "/build-templates/jsb-link/frameworks/runtime-src/proj.android-studio/app/src/main/assets";
   
-
     const kilnSettingsPath = path.join(Editor.Project.path, '/assets/resources/kiln/kilnSettings.json');
     const settings = JSON.parse(fs.readFileSync(kilnSettingsPath, 'utf8'));
 
@@ -109,18 +108,13 @@ function onBuildStart(options, callback) {
         kilnDefinitions.iap[iap.id] = iap;
     }
     
-    
-    // settings.leaderboards.forEeach((l) => {
-    //     kilnDefinitions.leaderboards[l.id] = l;
-    // });
-    // settings.iaps.forEeach((iap) => {
-    //     kilnDefinitions.iap[iap.id] = iap;
-    // });
+    const file = path.join(Editor.Project.path, androidAssetPath, 'kiln-definitions-development.json');
+    fs.writeFile(file, JSON.stringify(kilnDefinitions), (err) => {
+        if (err) Editor.error(err);
+        else Editor.success('Kiln Development Definitions created');
+    });
 
-    // Editor.log(Editor.Project.path);
-    // Editor.log(Editor.Project.path + androidAssetPath);
-
-    Editor.log(JSON.stringify(kilnDefinitions));
+    callback();
 }
 
 module.exports = {
