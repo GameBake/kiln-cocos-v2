@@ -1,6 +1,5 @@
-import { IProduct, IPurchase, KilnBannerPosition, KilnBannerSize } from "../../sdk/bridge";
-import IdSelector from "./idSelector";
-import "./kiln/kilnSetup"
+import { IKilnProduct, IKilnPurchase, KilnBannerPosition, KilnBannerSize } from "../../sdk/bridge";
+import IdSelector from "../../sdk/mock-platform/scripts/idSelector";
 import logger from "./logger";
 
 const { ccclass, property } = cc._decorator;
@@ -176,7 +175,7 @@ export default class AppManager extends cc.Component {
         let placementId = "";
 
         try {
-            placementId = await this._idSelector.selectID(cc.Kiln.API.settings.rewarded);
+            placementId = await this._idSelector.selectID(cc.Kiln.EditorSettings.rewarded);
             
             await cc.Kiln.API.loadRewardedAd(placementId);
 
@@ -197,7 +196,7 @@ export default class AppManager extends cc.Component {
         let placementId = "";
 
         try {
-            placementId = await this._idSelector.selectID(cc.Kiln.API.settings.rewarded);
+            placementId = await this._idSelector.selectID(cc.Kiln.EditorSettings.rewarded);
 
             let result = await cc.Kiln.API.showRewardedAd(placementId);
 
@@ -218,7 +217,7 @@ export default class AppManager extends cc.Component {
         let placementId = "";
 
         try {
-            placementId = await this._idSelector.selectID(cc.Kiln.API.settings.interstitials);
+            placementId = await this._idSelector.selectID(cc.Kiln.EditorSettings.interstitials);
              
             await cc.Kiln.API.loadInterstitialAd(placementId);
 
@@ -239,7 +238,7 @@ export default class AppManager extends cc.Component {
         let placementId = "";
 
         try {
-            placementId = await this._idSelector.selectID(cc.Kiln.API.settings.interstitials);
+            placementId = await this._idSelector.selectID(cc.Kiln.EditorSettings.interstitials);
 
             await cc.Kiln.API.showInterstitialAd(placementId);
 
@@ -263,7 +262,7 @@ export default class AppManager extends cc.Component {
 
         try {
             // Select a Placement Id
-            placementId = await this._idSelector.selectID(cc.Kiln.API.settings.banners);
+            placementId = await this._idSelector.selectID(cc.Kiln.EditorSettings.banners);
             
             // Choose an alignment
             let enumKeys = this.enumToArray(KilnBannerPosition)
@@ -273,7 +272,7 @@ export default class AppManager extends cc.Component {
             // Select a banner maximum size
             enumKeys = this.enumToArray(KilnBannerSize)
             let bannerSizeString = await this._idSelector.selectID(enumKeys);
-            maxSize = KilnBannerPosition[bannerSizeString];
+            maxSize = KilnBannerSize[bannerSizeString];
 
             await cc.Kiln.API.loadBannerAd(placementId, position, maxSize);
 
@@ -294,7 +293,7 @@ export default class AppManager extends cc.Component {
         let placementId = "";
 
         try {
-            placementId = await this._idSelector.selectID(cc.Kiln.API.settings.banners);
+            placementId = await this._idSelector.selectID(cc.Kiln.EditorSettings.banners);
 
             await cc.Kiln.API.showBannerAd(placementId);
 
@@ -315,7 +314,7 @@ export default class AppManager extends cc.Component {
         let placementId = "";
 
         try {
-            placementId = await this._idSelector.selectID(cc.Kiln.API.settings.banners);
+            placementId = await this._idSelector.selectID(cc.Kiln.EditorSettings.banners);
 
             await cc.Kiln.API.hideBannerAd(placementId);
 
@@ -336,7 +335,7 @@ export default class AppManager extends cc.Component {
         let placementId = "";
 
         try {
-            placementId = await this._idSelector.selectID(cc.Kiln.API.settings.banners);
+            placementId = await this._idSelector.selectID(cc.Kiln.EditorSettings.banners);
 
             await cc.Kiln.API.destroyBannerAd(placementId);
 
@@ -357,7 +356,7 @@ export default class AppManager extends cc.Component {
         try {
             let products = await cc.Kiln.API.getAvailableProducts();
 
-            products.forEach((p: IProduct) => this._logger.log(p.toString()));
+            products.forEach((p: IKilnProduct) => this._logger.log(p.toString()));
         }
         catch (ex) {
             this._logger.error(`Error Retrieving Available Products'`);
@@ -373,8 +372,8 @@ export default class AppManager extends cc.Component {
     public async onGetPurchasesButton(event: cc.Component.EventHandler, customEventData: string) {
         try {
             let purchases = await cc.Kiln.API.getPurchases();
-
-            purchases.forEach((p: IPurchase) => this._logger.log(p.toString()));
+            
+            purchases.forEach((p: IKilnPurchase) => this._logger.log(p.toString()));
         }
         catch (ex) {
             this._logger.error(`Error Retrieving Active Purchases'`);
@@ -391,7 +390,7 @@ export default class AppManager extends cc.Component {
         let productId = "";
 
         try {
-            productId = await this._idSelector.selectID(cc.Kiln.API.settings.iaps.map(iap => iap.id));
+            productId = await this._idSelector.selectID(cc.Kiln.EditorSettings.iaps.map(iap => iap.id));
 
             let purchase = await cc.Kiln.API.purchaseProduct(productId, "DEVELOPER PAYLOAD TEST");
 
@@ -419,7 +418,7 @@ export default class AppManager extends cc.Component {
             this._logger.log(`Product with purchas toke ${purchaseToken} consumed`);
         }
         catch (ex) {
-            this._logger.error(`Error Consuming Purhcase '${purchaseToken}'`);
+            this._logger.error(`Error Consuming Purchase '${purchaseToken}'`);
             this._logger.error((ex as Error).message);
         }
     }
@@ -433,7 +432,7 @@ export default class AppManager extends cc.Component {
         let leaderboardId = "";
         
         try {
-            leaderboardId = await this._idSelector.selectID(cc.Kiln.API.settings.leaderboards.map(l => l.id));
+            leaderboardId = await this._idSelector.selectID(cc.Kiln.EditorSettings.leaderboards.map(l => l.id));
 
             await cc.Kiln.API.setUserScore(leaderboardId, this._scoreToSubmit);
 
@@ -454,7 +453,7 @@ export default class AppManager extends cc.Component {
         let leaderboardId = "";
         
         try {
-            leaderboardId = await this._idSelector.selectID(cc.Kiln.API.settings.leaderboards.map(l => l.id));
+            leaderboardId = await this._idSelector.selectID(cc.Kiln.EditorSettings.leaderboards.map(l => l.id));
 
             let leaderboardEntry = await cc.Kiln.API.getUserScore(leaderboardId);
 
@@ -475,7 +474,7 @@ export default class AppManager extends cc.Component {
         let leaderboardId = "";
         
         try {
-            leaderboardId = await this._idSelector.selectID(cc.Kiln.API.settings.leaderboards.map(l => l.id));
+            leaderboardId = await this._idSelector.selectID(cc.Kiln.EditorSettings.leaderboards.map(l => l.id));
 
             let leaderboardEntry = await cc.Kiln.API.getScores(leaderboardId, this._getScoresAmount, this._getScoresOffset);
 
@@ -511,7 +510,7 @@ export default class AppManager extends cc.Component {
         let eventId = "";
 
         try {
-            eventId = await this._idSelector.selectID(cc.Kiln.API.settings.events);
+            eventId = await this._idSelector.selectID(cc.Kiln.EditorSettings.events);
 
             await cc.Kiln.API.submitAnalyticsEvent(eventId);
 

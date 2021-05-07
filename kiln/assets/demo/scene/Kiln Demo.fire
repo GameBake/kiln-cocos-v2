@@ -10075,7 +10075,7 @@
     },
     "component": "",
     "_componentId": "b8347c2jABGgqGl+DZleyxw",
-    "handler": "ScoreToSubmit",
+    "handler": "SetScoreToSubmit",
     "customEventData": ""
   },
   {
