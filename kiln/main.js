@@ -69,23 +69,68 @@ function onBuildStart(options, callback) {
     const fs = require('fs');
     const path = require('path'); 
   
-    // automatically create a folder after package loaded
-    // fs.mkdirSync(Path.join(Editor.Project.path, 'myNewFolder'));
-    // Editor.success('New folder created!');
 
-    // let path = path.join(options.)
+    const kilnSettingsPath = path.join(Editor.Project.path, '/assets/resources/kiln/kilnSettings.json');
+    const settings = JSON.parse(fs.readFileSync(kilnSettingsPath, 'utf8'));
 
-    Editor.log(Editor.Project.path);
-    Editor.log(Editor.Project.path + androidAssetPath);
+    const kilnDefinitions = {
+        ads: {
+            interstitial: {},
+            banner: {},
+            rewarded: {}
+        },
+        events: {},
+        leaderboards: {},
+        iap: {}
+    }
+    
+    Editor.log();
+    for (let i = 0; i < settings.interstitials.length; i++) {
+        let id = settings.interstitials[i];
+        kilnDefinitions.ads.interstitial[id] = id;
+    }
+    for (let i = 0; i < settings.rewarded.length; i++) {
+        let id = settings.rewarded[i];
+        kilnDefinitions.ads.rewarded[id] = id;
+    }
+    for (let i = 0; i < settings.banners.length; i++) {
+        let id = settings.banners[i];
+        kilnDefinitions.ads.banner[id] = id;
+    }
+    for (let i = 0; i < settings.events.length; i++) {
+        let id = settings.events[i];
+        kilnDefinitions.events[id] = id;
+    }
+    for (let i = 0; i < settings.leaderboards.length; i++) {
+        let l = settings.leaderboards[i];
+        kilnDefinitions.leaderboards[l.id] = l;
+    }
+    for (let i = 0; i < settings.iaps.length; i++) {
+        let iap = settings.iaps[i];
+        kilnDefinitions.iap[iap.id] = iap;
+    }
+    
+    
+    // settings.leaderboards.forEeach((l) => {
+    //     kilnDefinitions.leaderboards[l.id] = l;
+    // });
+    // settings.iaps.forEeach((iap) => {
+    //     kilnDefinitions.iap[iap.id] = iap;
+    // });
+
+    // Editor.log(Editor.Project.path);
+    // Editor.log(Editor.Project.path + androidAssetPath);
+
+    Editor.log(JSON.stringify(kilnDefinitions));
 }
 
 module.exports = {
     load() {
-        // Editor.Builder.on('build-start', onBuildStart);
+        Editor.Builder.on('build-start', onBuildStart);
     },
 
     unload() {
-        // Editor.Builder.removeListener('build-start', onBuildStart);
+        Editor.Builder.removeListener('build-start', onBuildStart);
     },
 
     messages: {
