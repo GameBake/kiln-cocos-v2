@@ -1,4 +1,4 @@
-import { IProduct, IPurchase, KilnBannerPosition, KilnBannerSize } from "../../sdk/bridge";
+import { IKilnProduct, IKilnPurchase, KilnBannerPosition, KilnBannerSize } from "../../sdk/bridge";
 import IdSelector from "../../sdk/mock-platform/scripts/idSelector";
 import logger from "./logger";
 
@@ -356,7 +356,7 @@ export default class AppManager extends cc.Component {
         try {
             let products = await cc.Kiln.API.getAvailableProducts();
 
-            products.forEach((p: IProduct) => this._logger.log(p.toString()));
+            products.forEach((p: IKilnProduct) => this._logger.log(p.toString()));
         }
         catch (ex) {
             this._logger.error(`Error Retrieving Available Products'`);
@@ -372,8 +372,8 @@ export default class AppManager extends cc.Component {
     public async onGetPurchasesButton(event: cc.Component.EventHandler, customEventData: string) {
         try {
             let purchases = await cc.Kiln.API.getPurchases();
-
-            purchases.forEach((p: IPurchase) => this._logger.log(p.toString()));
+            
+            purchases.forEach((p: IKilnPurchase) => this._logger.log(p.toString()));
         }
         catch (ex) {
             this._logger.error(`Error Retrieving Active Purchases'`);
@@ -418,7 +418,7 @@ export default class AppManager extends cc.Component {
             this._logger.log(`Product with purchas toke ${purchaseToken} consumed`);
         }
         catch (ex) {
-            this._logger.error(`Error Consuming Purhcase '${purchaseToken}'`);
+            this._logger.error(`Error Consuming Purchase '${purchaseToken}'`);
             this._logger.error((ex as Error).message);
         }
     }

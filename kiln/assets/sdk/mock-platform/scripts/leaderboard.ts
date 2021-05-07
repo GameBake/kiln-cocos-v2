@@ -1,4 +1,4 @@
-import { ILeaderboardEntry, IPlayer } from "../../bridge";
+import { IKilnLeaderboardEntry, IKilnPlayer } from "../../bridge";
 import KilnHelper from "./helper";
 
 /**
@@ -9,7 +9,7 @@ export default class KilnLeaderboard {
     private _data: Map<string, number> = new Map<string, number>();
     private _ascending: boolean;
 
-    private PLAYER_KEY = "PLAYER";
+    private readonly _playerId = "PLAYER";
 
     constructor(id: string = "leaderboard", amount: number = 100, ascending: boolean = false, persistOnInstantiate: boolean = true) {
         this._id = id;
@@ -169,16 +169,16 @@ export default class KilnLeaderboard {
      * @param data 
      */
     public setUserScore(score: number, data: object) {
-        if (this._data.has(this.PLAYER_KEY)) {
-            if ((!this._ascending && score > this._data.get(this.PLAYER_KEY)) ||
-                (this._ascending && score < this._data.get(this.PLAYER_KEY))) {
-                this._data.set(this.PLAYER_KEY, score);
+        if (this._data.has(this._playerId)) {
+            if ((!this._ascending && score > this._data.get(this._playerId)) ||
+                (this._ascending && score < this._data.get(this._playerId))) {
+                this._data.set(this._playerId, score);
                 
                 this.save();
             }
         }
         else {
-            this._data.set(this.PLAYER_KEY, score);
+            this._data.set(this._playerId, score);
             this.save();
         }
     }
@@ -187,19 +187,19 @@ export default class KilnLeaderboard {
      * 
      * @returns 
      */
-    public getUserScore(): ILeaderboardEntry {
-        if (!this._data.has(this.PLAYER_KEY)) {
-            throw new Error(`User ${this.PLAYER_KEY} not present in leaderboard.`);
+    public getUserScore(): IKilnLeaderboardEntry {
+        if (!this._data.has(this._playerId)) {
+            throw new Error(`User ${this._playerId} not present in leaderboard.`);
         }
 
-        let player: IPlayer = {
+        let player: IKilnPlayer = {
             getId: () => "",
-            getName: () => this.PLAYER_KEY,
+            getName: () => this._playerId,
             getPhotoURL: () => "",
         }
 
-        const score = this._data.get(this.PLAYER_KEY);
-        const rank = this.getRank(this.PLAYER_KEY);
+        const score = this._data.get(this._playerId);
+        const rank = this.getRank(this._playerId);
         return {
             getScore: () => score,
             getRank: () => rank,
@@ -214,8 +214,8 @@ export default class KilnLeaderboard {
      * @param offset 
      * @returns 
      */
-    public getScores(count: number, offset: number): Array<ILeaderboardEntry> {
-        const scores = new Array<ILeaderboardEntry>();
+    public getScores(count: number, offset: number): Array<IKilnLeaderboardEntry> {
+        const scores = new Array<IKilnLeaderboardEntry>();
 
         if (this._data.size > offset) {
             let dataList = new Array<KilnLeaderboardEntry>();
@@ -239,14 +239,14 @@ export default class KilnLeaderboard {
             for (let i = offset; i < count + offset; i++) {
                 if (i >= this._data.size) break;
                 
-                const player: IPlayer = {
+                const player: IKilnPlayer = {
                     getId: () => "",
                     getName: () => dataList[i].name,
                     getPhotoURL: () => "",
                 }
 
                 const rank = offset + i + 1
-                const entry: ILeaderboardEntry = {
+                const entry: IKilnLeaderboardEntry = {
                     getScore: () => dataList[i].score,
                     getRank: () => rank,
                     getPlayer: () => player,
@@ -259,7 +259,6 @@ export default class KilnLeaderboard {
 
         return scores;
     }
-
 
 }
 

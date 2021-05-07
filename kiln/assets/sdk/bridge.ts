@@ -28,22 +28,22 @@ export enum KilnBannerSize {
     ScreenWidthHeight280
 }
 
-export enum ProductType
+export enum KilnProductType
 {
     Consumable, NonConsumable
 }
     
-export interface IProduct {
+export interface IKilnProduct {
     getProductID: () => string,
     getPrice: () => string,
-    getProductType: () => ProductType,
+    getProductType: () => KilnProductType,
     getDescription: () => string,
     getImageURI: () => string,
     getPriceCurrencyCode: () => string,
     toString: () => string
 }
 
-export interface IPurchase {
+export interface IKilnPurchase {
     getDeveloperPayload: () => string,
     getProductId: () => string,
     getPurchaseToken: () => string,
@@ -52,14 +52,14 @@ export interface IPurchase {
     toString: () => string
 }
 
-export interface ILeaderboardEntry {
+export interface IKilnLeaderboardEntry {
     getScore: () => number,
     getRank: () => number,
-    getPlayer: () => IPlayer,
+    getPlayer: () => IKilnPlayer,
     toString: () => string,
 }
 
-export interface IPlayer {
+export interface IKilnPlayer {
     getId: () => string,
     getName: () => string,
     getPhotoURL: () => string,
@@ -256,9 +256,9 @@ export class KilnBridge {
      * 
      * @returns 
      */
-    public static getAvailableProducts(): Promise<Array<IProduct>> {
-        let promise = new Promise<Array<IProduct>>((resolve, reject) => { 
-            cc.Kiln.Callbacks.onGetAvailableProductsSuccess = (products: Array<IProduct>) => resolve(products);
+    public static getAvailableProducts(): Promise<Array<IKilnProduct>> {
+        let promise = new Promise<Array<IKilnProduct>>((resolve, reject) => { 
+            cc.Kiln.Callbacks.onGetAvailableProductsSuccess = (products: Array<IKilnProduct>) => resolve(products);
             cc.Kiln.Callbacks.onGetAvailableProductsFailure = (e: Error) => reject(e);
         });
 
@@ -272,9 +272,9 @@ export class KilnBridge {
      * @param ids 
      * @returns 
      */
-    public static getAvailableProductsFromList(ids: Array<string>): Promise<Array<IProduct>> {
-        let promise = new Promise<Array<IProduct>>((resolve, reject) => { 
-            cc.Kiln.Callbacks.onGetAvailableProductsSuccess = (products: Array<IProduct>) => resolve(products);
+    public static getAvailableProductsFromList(ids: Array<string>): Promise<Array<IKilnProduct>> {
+        let promise = new Promise<Array<IKilnProduct>>((resolve, reject) => { 
+            cc.Kiln.Callbacks.onGetAvailableProductsSuccess = (products: Array<IKilnProduct>) => resolve(products);
             cc.Kiln.Callbacks.onGetAvailableProductsFailure = (e: Error) => reject(e);
         });
 
@@ -287,9 +287,9 @@ export class KilnBridge {
      * 
      * @returns 
      */
-    public static getPurchases(): Promise<Array<IPurchase>> {
-        let promise = new Promise<Array<IPurchase>>((resolve, reject) => { 
-            cc.Kiln.Callbacks.onGetPurchasesSuccess = (products: Array<IPurchase>) => resolve(products);
+    public static getPurchases(): Promise<Array<IKilnPurchase>> {
+        let promise = new Promise<Array<IKilnPurchase>>((resolve, reject) => { 
+            cc.Kiln.Callbacks.onGetPurchasesSuccess = (products: Array<IKilnPurchase>) => resolve(products);
             cc.Kiln.Callbacks.onGetPurchasesFailure = (e: Error) => reject(e);
         });
 
@@ -303,9 +303,9 @@ export class KilnBridge {
      * @param productId 
      * @param payload 
      */
-    public static purchaseProduct(productId: string, payload: string): Promise<IPurchase> {
-        let promise = new Promise<IPurchase>((resolve, reject) => { 
-            cc.Kiln.Callbacks.onPurchaseProductSuccess = (purchase: IPurchase) => resolve(purchase);
+    public static purchaseProduct(productId: string, payload: string): Promise<IKilnPurchase> {
+        let promise = new Promise<IKilnPurchase>((resolve, reject) => { 
+            cc.Kiln.Callbacks.onPurchaseProductSuccess = (purchase: IKilnPurchase) => resolve(purchase);
             cc.Kiln.Callbacks.onPurchaseProductFailure = (e: Error) => reject(e);
         });
 
@@ -335,9 +335,9 @@ export class KilnBridge {
      * @param leaderboardId 
      * @returns 
      */
-    public static getUserScore(leaderboardId: string): Promise<ILeaderboardEntry> {
-        let promise = new Promise<ILeaderboardEntry>((resolve, reject) => { 
-            cc.Kiln.Callbacks.onGetUserScoreSuccess = (l: ILeaderboardEntry) => resolve(l);
+    public static getUserScore(leaderboardId: string): Promise<IKilnLeaderboardEntry> {
+        let promise = new Promise<IKilnLeaderboardEntry>((resolve, reject) => { 
+            cc.Kiln.Callbacks.onGetUserScoreSuccess = (l: IKilnLeaderboardEntry) => resolve(l);
             cc.Kiln.Callbacks.onGetUserScoreFailure = (e: Error) => reject(e);
         });
 
@@ -372,9 +372,9 @@ export class KilnBridge {
      * @param offset 
      * @param leaderboardId 
      */
-    public static getScores(leaderboardId: string, amount: number, offset: number): Promise<Array<ILeaderboardEntry>> {
-        let promise = new Promise<Array<ILeaderboardEntry>>((resolve, reject) => { 
-            cc.Kiln.Callbacks.onGetScoresSuccess = (scores: Array<ILeaderboardEntry>) => resolve(scores);
+    public static getScores(leaderboardId: string, amount: number, offset: number): Promise<Array<IKilnLeaderboardEntry>> {
+        let promise = new Promise<Array<IKilnLeaderboardEntry>>((resolve, reject) => { 
+            cc.Kiln.Callbacks.onGetScoresSuccess = (scores: Array<IKilnLeaderboardEntry>) => resolve(scores);
             cc.Kiln.Callbacks.onGetScoresFailure = (e: Error) => reject(e);
         });
 
