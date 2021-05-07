@@ -64,28 +64,66 @@ function initBuildTemplates(silent = false) {
  * @param {*} callback 
  */
 function onBuildStart(options, callback) {
-    const androidAssetPath = "/build-templates/jsb-link/frameworks/runtime-src/proj.android-studio/app/src/main/assets";
-
     const fs = require('fs');
-    const path = require('path'); 
+    const path = require('path');
+    
+    const androidAssetPath = "/build-templates/jsb-link/frameworks/runtime-src/proj.android-studio/app/src/main/assets";
   
-    // automatically create a folder after package loaded
-    // fs.mkdirSync(Path.join(Editor.Project.path, 'myNewFolder'));
-    // Editor.success('New folder created!');
+    const kilnSettingsPath = path.join(Editor.Project.path, '/assets/resources/kiln/kilnSettings.json');
+    const settings = JSON.parse(fs.readFileSync(kilnSettingsPath, 'utf8'));
 
-    // let path = path.join(options.)
+    // Generate Kiln Definitions
+    const kilnDefinitions = {
+        ads: {
+            interstitial: {},
+            banner: {},
+            rewarded: {}
+        },
+        events: {},
+        leaderboards: {},
+        iap: {}
+    }
+    for (let i = 0; i < settings.interstitials.length; i++) {
+        let id = settings.interstitials[i];
+        kilnDefinitions.ads.interstitial[id] = id;
+    }
+    for (let i = 0; i < settings.rewarded.length; i++) {
+        let id = settings.rewarded[i];
+        kilnDefinitions.ads.rewarded[id] = id;
+    }
+    for (let i = 0; i < settings.banners.length; i++) {
+        let id = settings.banners[i];
+        kilnDefinitions.ads.banner[id] = id;
+    }
+    for (let i = 0; i < settings.events.length; i++) {
+        let id = settings.events[i];
+        kilnDefinitions.events[id] = id;
+    }
+    for (let i = 0; i < settings.leaderboards.length; i++) {
+        let l = settings.leaderboards[i];
+        kilnDefinitions.leaderboards[l.id] = l;
+    }
+    for (let i = 0; i < settings.iaps.length; i++) {
+        let iap = settings.iaps[i];
+        kilnDefinitions.iap[iap.id] = iap;
+    }
+    
+    const file = path.join(Editor.Project.path, androidAssetPath, 'kiln-definitions-development.json');
+    fs.writeFile(file, JSON.stringify(kilnDefinitions), (err) => {
+        if (err) Editor.error(err);
+        else Editor.success('Kiln Development Definitions created');
+    });
 
-    Editor.log(Editor.Project.path);
-    Editor.log(Editor.Project.path + androidAssetPath);
+    callback();
 }
 
 module.exports = {
     load() {
-        // Editor.Builder.on('build-start', onBuildStart);
+        Editor.Builder.on('build-start', onBuildStart);
     },
 
     unload() {
-        // Editor.Builder.removeListener('build-start', onBuildStart);
+        Editor.Builder.removeListener('build-start', onBuildStart);
     },
 
     messages: {
