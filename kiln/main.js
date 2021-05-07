@@ -73,6 +73,7 @@ function onBuildStart(options, callback) {
     const kilnSettingsPath = path.join(Editor.Project.path, '/assets/resources/kiln/kilnSettings.json');
     const settings = JSON.parse(fs.readFileSync(kilnSettingsPath, 'utf8'));
 
+    // Generate Kiln Definitions
     const kilnDefinitions = {
         ads: {
             interstitial: {},
@@ -83,8 +84,6 @@ function onBuildStart(options, callback) {
         leaderboards: {},
         iap: {}
     }
-    
-    Editor.log();
     for (let i = 0; i < settings.interstitials.length; i++) {
         let id = settings.interstitials[i];
         kilnDefinitions.ads.interstitial[id] = id;

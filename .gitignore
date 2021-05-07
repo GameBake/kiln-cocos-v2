@@ -51,3 +51,6 @@ Thumbs.db
 #//////////////////////////
 
 .vscode/
+
+# Ignore template android asset folder as that's dynamically generated on build.
+# /build-templates/jsb-link/frameworks/runtime-src/proj.android-studio/app/src/main/assets
