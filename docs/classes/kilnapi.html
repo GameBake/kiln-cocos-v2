@@ -1,0 +1,1026 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>KilnAPI | Kiln Cocos Creator 2 API doc</title>
+	<meta name="description" content="Documentation for Kiln Cocos Creator 2 API doc">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">Kiln Cocos Creator 2 API doc</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../index.html">Kiln Cocos Creator 2 API doc</a>
+				</li>
+				<li>
+					<a href="kilnapi.html">KilnAPI</a>
+				</li>
+			</ul>
+			<h1>Class KilnAPI</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Kiln API</p>
+					</div>
+					<p>Accessible globally through cc.Kiln.API</p>
+					<pre><code class="language-typescript"><span style="color: #008000">// Examples:</span>
+
+<span style="color: #008000">// Initialization</span>
+<span style="color: #001080">cc</span><span style="color: #000000">.</span><span style="color: #001080">Kiln</span><span style="color: #000000">.</span><span style="color: #0070C1">API</span><span style="color: #000000">.</span><span style="color: #795E26">init</span><span style="color: #000000">();</span>
+
+<span style="color: #008000">// Check for Rewarded Ads support:</span>
+<span style="color: #001080">cc</span><span style="color: #000000">.</span><span style="color: #001080">Kiln</span><span style="color: #000000">.</span><span style="color: #0070C1">API</span><span style="color: #000000">.</span><span style="color: #795E26">supportsRewardedAds</span><span style="color: #000000">();</span>
+</code></pre>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">KilnAPI</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#consumepurchasedproduct" class="tsd-kind-icon">consume<wbr>Purchased<wbr>Product</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#destroybannerad" class="tsd-kind-icon">destroy<wbr>Banner<wbr>Ad</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#getavailableproducts" class="tsd-kind-icon">get<wbr>Available<wbr>Products</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#getpurchases" class="tsd-kind-icon">get<wbr>Purchases</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#getscores" class="tsd-kind-icon">get<wbr>Scores</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#getuserscore" class="tsd-kind-icon">get<wbr>User<wbr>Score</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#hidebannerad" class="tsd-kind-icon">hide<wbr>Banner<wbr>Ad</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#init" class="tsd-kind-icon">init</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#loadbannerad" class="tsd-kind-icon">load<wbr>Banner<wbr>Ad</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#loadinterstitialad" class="tsd-kind-icon">load<wbr>Interstitial<wbr>Ad</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#loadrewardedad" class="tsd-kind-icon">load<wbr>Rewarded<wbr>Ad</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#purchaseproduct" class="tsd-kind-icon">purchase<wbr>Product</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#setuserscore" class="tsd-kind-icon">set<wbr>User<wbr>Score</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#showbannerad" class="tsd-kind-icon">show<wbr>Banner<wbr>Ad</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#showinterstitialad" class="tsd-kind-icon">show<wbr>Interstitial<wbr>Ad</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#showplatformleaderboardui" class="tsd-kind-icon">show<wbr>Platform<wbr>LeaderboardUI</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#showrewardedad" class="tsd-kind-icon">show<wbr>Rewarded<wbr>Ad</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#submitanalyticsevent" class="tsd-kind-icon">submit<wbr>Analytics<wbr>Event</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#supportsbannerads" class="tsd-kind-icon">supports<wbr>Banner<wbr>Ads</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#supportsiap" class="tsd-kind-icon">supportsIAP</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#supportsinterstitialads" class="tsd-kind-icon">supports<wbr>Interstitial<wbr>Ads</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#supportsleaderboards" class="tsd-kind-icon">supports<wbr>Leaderboards</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#supportsplatformleaderboardsui" class="tsd-kind-icon">supports<wbr>Platform<wbr>LeaderboardsUI</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="kilnapi.html#supportsrewardedads" class="tsd-kind-icon">supports<wbr>Rewarded<wbr>Ads</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="consumepurchasedproduct" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> consume<wbr>Purchased<wbr>Product</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">consume<wbr>Purchased<wbr>Product<span class="tsd-signature-symbol">(</span>purchaseToken<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:535</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>It consumes an already purchased consumable product. If the platform doesn&#39;t
+									support purchases it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>purchaseToken: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Token associated with the Purchase</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="destroybannerad" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> destroy<wbr>Banner<wbr>Ad</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">destroy<wbr>Banner<wbr>Ad<span class="tsd-signature-symbol">(</span>identifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:426</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>It destroys the banner ad. If the platform doesn&#39;t support banner ads
+										(see <a href="kilnapi.html#supportsbannerads">supportsBannerAds</a>), the identifier is invalid or the banner hasn&#39;t
+										been previously loaded (see <a href="kilnapi.html#loadbannerad">loadBannerAd</a>)
+									it&#39;ll reject the Promise.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>identifier: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Banner Ad identifier</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="getavailableproducts" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Available<wbr>Products</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Available<wbr>Products<span class="tsd-signature-symbol">(</span>ids<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ikilnproduct.html" class="tsd-signature-type" data-tsd-kind="Interface">IKilnProduct</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:461</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieves a list of available for purcharse Product. If the platform doesn&#39;t
+									support In App Purchases (<a href="kilnapi.html#supportsiap">supportsIAP</a>) it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> ids: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>List of ids of products to retrieve. Optional parameter, will retrieve all if not provided.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ikilnproduct.html" class="tsd-signature-type" data-tsd-kind="Interface">IKilnProduct</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="getpurchases" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Purchases</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Purchases<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ikilnpurchase.html" class="tsd-signature-type" data-tsd-kind="Interface">IKilnPurchase</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:490</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieves a list of active Purchases. By active we mean that they are either for Non
+										Consumables Products, or Consumables Products that have not been
+										consumed yet. If the platform doesn&#39;t support In App Purchases (see <a href="kilnapi.html#supportsiap">supportsIAP</a>)
+									it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ikilnpurchase.html" class="tsd-signature-type" data-tsd-kind="Interface">IKilnPurchase</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="getscores" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Scores</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Scores<span class="tsd-signature-symbol">(</span>leaderboardId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, amount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ikilnleaderboardentry.html" class="tsd-signature-type" data-tsd-kind="Interface">IKilnLeaderboardEntry</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:620</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieves a list of LeaderboardEntry for all players. If the platform doesn&#39;t
+									support leaderboards (see <a href="kilnapi.html#supportsleaderboards">supportsLeaderboards</a>) it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>leaderboardId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Leaderboard identifier</p>
+									</div>
+								</li>
+								<li>
+									<h5>amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 10</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Amount of LeaderboardEntry to retrieve</p>
+									</div>
+								</li>
+								<li>
+									<h5>offset: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Offset from the top of the Leaderboard that LeaderboardEntry will be fetched from</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ikilnleaderboardentry.html" class="tsd-signature-type" data-tsd-kind="Interface">IKilnLeaderboardEntry</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="getuserscore" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>User<wbr>Score</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>User<wbr>Score<span class="tsd-signature-symbol">(</span>leaderboardId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ikilnleaderboardentry.html" class="tsd-signature-type" data-tsd-kind="Interface">IKilnLeaderboardEntry</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:556</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retrieves the current Player&#39;s LeaderboardEntry. If the platform doesn&#39;t support
+									Leaderboards the Task (see <a href="kilnapi.html#supportsleaderboards">supportsLeaderboards</a>) it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>leaderboardId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Leaderboard identifier</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ikilnleaderboardentry.html" class="tsd-signature-type" data-tsd-kind="Interface">IKilnLeaderboardEntry</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="hidebannerad" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> hide<wbr>Banner<wbr>Ad</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">hide<wbr>Banner<wbr>Ad<span class="tsd-signature-symbol">(</span>identifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:390</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Hides a Banner Ad. If the platform doesn&#39;t support Banner Ads (see <a href="kilnapi.html#supportsbannerads">supportsBannerAds</a>),
+										an invalid Banner id is provided, or the Banner Ad has not been previously loaded
+									(see <a href="kilnapi.html#loadbannerad">loadBannerAd</a>, <a href="../enums/kilnbannerposition.html">KilnBannerPosition</a>, <a href="../enums/kilnbannersize.html">KilnBannerSize</a>)) it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>identifier: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Banner Ad identifier</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="init" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> init</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:49</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Initializes the SDK</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="loadbannerad" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> load<wbr>Banner<wbr>Ad</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Banner<wbr>Ad<span class="tsd-signature-symbol">(</span>identifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, position<span class="tsd-signature-symbol">: </span><a href="../enums/kilnbannerposition.html" class="tsd-signature-type" data-tsd-kind="Enumeration">KilnBannerPosition</a>, maxSize<span class="tsd-signature-symbol">?: </span><a href="../enums/kilnbannersize.html" class="tsd-signature-type" data-tsd-kind="Enumeration">KilnBannerSize</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:313</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Loads a Banner Ad. If the current platform doesn&#39;t support Banner Ads
+										(see <a href="kilnapi.html#supportsbannerads">supportsBannerAds</a>), the provided identifier is invalid or the Banner Ad
+									has already been loaded the Task will get an Exception</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>identifier: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Banner Ad identifier</p>
+									</div>
+								</li>
+								<li>
+									<h5>position: <a href="../enums/kilnbannerposition.html" class="tsd-signature-type" data-tsd-kind="Enumeration">KilnBannerPosition</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Where in the screen to position the Banner Ad. See <a href="../enums/kilnbannerposition.html">KilnBannerPosition</a></p>
+									</div>
+								</li>
+								<li>
+									<h5>maxSize: <a href="../enums/kilnbannersize.html" class="tsd-signature-type" data-tsd-kind="Enumeration">KilnBannerSize</a><span class="tsd-signature-symbol"> = ...</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The maximum size of the Banner Ad to load. See <a href="../enums/kilnbannersize.html">KilnBannerSize</a></p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="loadinterstitialad" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> load<wbr>Interstitial<wbr>Ad</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Interstitial<wbr>Ad<span class="tsd-signature-symbol">(</span>identifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:235</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Loads an Interstitial Ad. If the current platform doesn&#39;t support Interstitial Ads
+										(see <a href="kilnapi.html#supportsinterstitialads">supportsInterstitialAds</a>), is provided an invalid identifier or there&#39;s a
+									problem loading the ad, it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>identifier: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Interstitial Ad identifier</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="loadrewardedad" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> load<wbr>Rewarded<wbr>Ad</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Rewarded<wbr>Ad<span class="tsd-signature-symbol">(</span>identifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:160</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Loads a Rewarded Ad. If the current platform doesn&#39;t support Rewarded Ads (see <a href="kilnapi.html#supportsrewardedads">supportsRewardedAds</a>),
+									is provided with an invalid identifier or there&#39;s a problem loading the ad, it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>identifier: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Rewarded Ad identifier</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="purchaseproduct" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> purchase<wbr>Product</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">purchase<wbr>Product<span class="tsd-signature-symbol">(</span>productId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ikilnpurchase.html" class="tsd-signature-type" data-tsd-kind="Interface">IKilnPurchase</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:514</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Launches the purchase flow of a Product. If the platform doesn&#39;t support In
+									App Purchases (see <a href="kilnapi.html#supportsiap">supportsIAP</a>) it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>productId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Identifier of the Product to be purchased</p>
+									</div>
+								</li>
+								<li>
+									<h5>payload: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Additional data to send with the purchase</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/ikilnpurchase.html" class="tsd-signature-type" data-tsd-kind="Interface">IKilnPurchase</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="setuserscore" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> set<wbr>User<wbr>Score</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>User<wbr>Score<span class="tsd-signature-symbol">(</span>leaderboardId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, score<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:585</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the current Player&#39;s score. If the platform doesn&#39;t support Leaderboards
+									(see <a href="kilnapi.html#supportsleaderboards">supportsLeaderboards</a>) it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>leaderboardId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Leaderboard identifier</p>
+									</div>
+								</li>
+								<li>
+									<h5>score: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Score to set</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> data: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>(Optional) If the platform supports it, additional data to set.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="showbannerad" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> show<wbr>Banner<wbr>Ad</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">show<wbr>Banner<wbr>Ad<span class="tsd-signature-symbol">(</span>identifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:355</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Shows a Banner Ad. If the platform doesn&#39;t support Banner Ads (see <a href="kilnapi.html#supportsbannerads">supportsBannerAds</a>),
+										an invalid identifier is provided or the Banner Ad is not loaded (see <a href="kilnapi.html#loadbannerad">loadBannerAd</a>,
+									<a href="../enums/kilnbannerposition.html">KilnBannerPosition</a>, <a href="../enums/kilnbannersize.html">KilnBannerSize</a>)), it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>identifier: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Banner Ad identifier</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="showinterstitialad" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> show<wbr>Interstitial<wbr>Ad</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">show<wbr>Interstitial<wbr>Ad<span class="tsd-signature-symbol">(</span>identifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:277</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Shows an Interstitial Ad. If the platform doesn&#39;t support Interstitial Ads
+										(see <a href="kilnapi.html#supportsinterstitialads">supportsInterstitialAds</a>), an invalid identifier is provided or the
+										Interstitial Ad is not loaded (see <a href="kilnapi.html#loadinterstitialad">loadInterstitialAd</a>),
+									it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>identifier: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Interstitial Ad identifier</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="showplatformleaderboardui" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> show<wbr>Platform<wbr>LeaderboardUI</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">show<wbr>Platform<wbr>LeaderboardUI<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:646</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Shows native Leaderboard UI if supported (see {@link supportsPlatformLeaderboardUI}).
+									Otherwise reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="showrewardedad" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> show<wbr>Rewarded<wbr>Ad</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">show<wbr>Rewarded<wbr>Ad<span class="tsd-signature-symbol">(</span>identifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/kilnrewardedadresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">KilnRewardedAdResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:201</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Shows a Rewarded Ad. If the platform doesn&#39;t support Rewarded Ads (see <a href="kilnapi.html#supportsrewardedads">supportsRewardedAds</a>),
+										an invalid identifier is provided or the Rewarded Ad hasn&#39;t been loaded (see <a href="kilnapi.html#loadrewardedad">loadRewardedAd</a>)
+									it&#39;ll reject the Promise</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>identifier: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Rewarded Ad identifier</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/kilnrewardedadresponse.html" class="tsd-signature-type" data-tsd-kind="Interface">KilnRewardedAdResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="submitanalyticsevent" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> submit<wbr>Analytics<wbr>Event</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">submit<wbr>Analytics<wbr>Event<span class="tsd-signature-symbol">(</span>eventId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:677</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sends an Analytics Event.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>eventId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Event identifier</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Promise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="supportsbannerads" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> supports<wbr>Banner<wbr>Ads</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">supports<wbr>Banner<wbr>Ads<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:106</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks for Banner Ads support</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if supported, false otherwise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="supportsiap" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> supportsIAP</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">supportsIAP<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:119</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks for In App Purchases support</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if supported, false otherwise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="supportsinterstitialads" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> supports<wbr>Interstitial<wbr>Ads</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">supports<wbr>Interstitial<wbr>Ads<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:80</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks for Interstitial Ads support</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if supported, false otherwise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="supportsleaderboards" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> supports<wbr>Leaderboards</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">supports<wbr>Leaderboards<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:132</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks for Leaderboards support</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if supported, false otherwise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="supportsplatformleaderboardsui" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> supports<wbr>Platform<wbr>LeaderboardsUI</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">supports<wbr>Platform<wbr>LeaderboardsUI<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:145</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks for Native Leaderboard UI support</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if supported, false otherwise</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="supportsrewardedads" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> supports<wbr>Rewarded<wbr>Ads</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">supports<wbr>Rewarded<wbr>Ads<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in api.ts:93</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks for Rewarded Ads support</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>true if supported, false otherwise</p>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="../index.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="../enums/kilnbannerposition.html" class="tsd-kind-icon">Kiln<wbr>Banner<wbr>Position</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/kilnbannersize.html" class="tsd-kind-icon">Kiln<wbr>Banner<wbr>Size</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/kilnproducttype.html" class="tsd-kind-icon">Kiln<wbr>Product<wbr>Type</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="kilnapi.html" class="tsd-kind-icon">KilnAPI</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#consumepurchasedproduct" class="tsd-kind-icon">consume<wbr>Purchased<wbr>Product</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#destroybannerad" class="tsd-kind-icon">destroy<wbr>Banner<wbr>Ad</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#getavailableproducts" class="tsd-kind-icon">get<wbr>Available<wbr>Products</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#getpurchases" class="tsd-kind-icon">get<wbr>Purchases</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#getscores" class="tsd-kind-icon">get<wbr>Scores</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#getuserscore" class="tsd-kind-icon">get<wbr>User<wbr>Score</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#hidebannerad" class="tsd-kind-icon">hide<wbr>Banner<wbr>Ad</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#init" class="tsd-kind-icon">init</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#loadbannerad" class="tsd-kind-icon">load<wbr>Banner<wbr>Ad</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#loadinterstitialad" class="tsd-kind-icon">load<wbr>Interstitial<wbr>Ad</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#loadrewardedad" class="tsd-kind-icon">load<wbr>Rewarded<wbr>Ad</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#purchaseproduct" class="tsd-kind-icon">purchase<wbr>Product</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#setuserscore" class="tsd-kind-icon">set<wbr>User<wbr>Score</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#showbannerad" class="tsd-kind-icon">show<wbr>Banner<wbr>Ad</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#showinterstitialad" class="tsd-kind-icon">show<wbr>Interstitial<wbr>Ad</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#showplatformleaderboardui" class="tsd-kind-icon">show<wbr>Platform<wbr>LeaderboardUI</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#showrewardedad" class="tsd-kind-icon">show<wbr>Rewarded<wbr>Ad</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#submitanalyticsevent" class="tsd-kind-icon">submit<wbr>Analytics<wbr>Event</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#supportsbannerads" class="tsd-kind-icon">supports<wbr>Banner<wbr>Ads</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#supportsiap" class="tsd-kind-icon">supportsIAP</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#supportsinterstitialads" class="tsd-kind-icon">supports<wbr>Interstitial<wbr>Ads</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#supportsleaderboards" class="tsd-kind-icon">supports<wbr>Leaderboards</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#supportsplatformleaderboardsui" class="tsd-kind-icon">supports<wbr>Platform<wbr>LeaderboardsUI</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="kilnapi.html#supportsrewardedads" class="tsd-kind-icon">supports<wbr>Rewarded<wbr>Ads</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/ikilnleaderboardentry.html" class="tsd-kind-icon">IKiln<wbr>Leaderboard<wbr>Entry</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/ikilnplayer.html" class="tsd-kind-icon">IKiln<wbr>Player</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/ikilnproduct.html" class="tsd-kind-icon">IKiln<wbr>Product</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/ikilnpurchase.html" class="tsd-kind-icon">IKiln<wbr>Purchase</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/kilnrewardedadresponse.html" class="tsd-kind-icon">Kiln<wbr>Rewarded<wbr>AdResponse</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
