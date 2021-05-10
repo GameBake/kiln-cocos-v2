@@ -1,4 +1,4 @@
-import { IKilnPurchase } from "../../bridge";
+import { IKilnPurchase } from "../../api";
 
 const {ccclass, property} = cc._decorator;
 

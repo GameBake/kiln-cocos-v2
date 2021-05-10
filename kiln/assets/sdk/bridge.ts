@@ -1,70 +1,8 @@
-export interface KilnRewardedAdResponse {
-    placementId: string,
-    withReward: boolean,
-}
+import { IKilnLeaderboardEntry, IKilnProduct, IKilnPurchase, KilnBannerPosition, KilnBannerSize, KilnRewardedAdResponse } from "./api";
 
-export enum KilnBannerPosition {
-    TopLeft,
-    TopCenter,
-    TopRight,
-    Centered,
-    BottomLeft,
-    BottomCenter,
-    BottomRight
-}
-
-export enum KilnBannerSize {
-    Width300Height50,
-    Width300Height250,
-    Width320Height50,
-    Width336Height280,
-    Width468Height60,
-    Width728Height90,
-    Width970Height90,
-    Width970Height250,
-    ScreenWidthHeight50,
-    ScreenWidthHeight90,
-    ScreenWidthHeight250,
-    ScreenWidthHeight280
-}
-
-export enum KilnProductType
-{
-    Consumable, NonConsumable
-}
-    
-export interface IKilnProduct {
-    getProductID: () => string,
-    getPrice: () => string,
-    getProductType: () => KilnProductType,
-    getDescription: () => string,
-    getImageURI: () => string,
-    getPriceCurrencyCode: () => string,
-    toString: () => string
-}
-
-export interface IKilnPurchase {
-    getDeveloperPayload: () => string,
-    getProductId: () => string,
-    getPurchaseToken: () => string,
-    getPurchaseTime: () => string,
-    getSignedRequest: () => string,
-    toString: () => string
-}
-
-export interface IKilnLeaderboardEntry {
-    getScore: () => number,
-    getRank: () => number,
-    getPlayer: () => IKilnPlayer,
-    toString: () => string,
-}
-
-export interface IKilnPlayer {
-    getId: () => string,
-    getName: () => string,
-    getPhotoURL: () => string,
-}
-
+/**
+ * @internal
+ */ 
 export class KilnBridge {
 
     /**

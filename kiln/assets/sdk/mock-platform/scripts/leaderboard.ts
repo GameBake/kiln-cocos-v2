@@ -1,4 +1,4 @@
-import { IKilnLeaderboardEntry, IKilnPlayer } from "../../bridge";
+import { IKilnLeaderboardEntry, IKilnPlayer } from "../../api";
 import KilnHelper from "./helper";
 
 /**

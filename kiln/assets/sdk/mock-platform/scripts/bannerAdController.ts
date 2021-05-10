@@ -1,4 +1,4 @@
-import { KilnBannerPosition, KilnBannerSize } from "../../bridge";
+import { KilnBannerPosition, KilnBannerSize } from "../../api";
 
 const {ccclass, property} = cc._decorator;
 

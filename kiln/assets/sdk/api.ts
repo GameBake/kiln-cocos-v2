@@ -1,4 +1,3 @@
-import { IKilnLeaderboardEntry, IKilnProduct, IKilnPurchase, KilnBannerPosition, KilnBannerSize, KilnRewardedAdResponse } from "./bridge";
 import KilnBannerAdController from "./mock-platform/scripts/bannerAdController";
 import KilnInAppPurchases from "./mock-platform/scripts/inAppPurchases";
 import KilnInterstitialAdController from "./mock-platform/scripts/interstitialAdController";
@@ -6,44 +5,34 @@ import KilnLeaderboard from "./mock-platform/scripts/leaderboard";
 import PlatformLeaderboardController from "./mock-platform/scripts/platformLeaderboardController";
 import KilnRewardedAdController from "./mock-platform/scripts/rewardedAdController";
 
-interface KilnLeaderboardSetting {
-    id: string,
-    ascending: boolean
-}
-
-interface KilnIAP {
-    id: string,
-    consumable: boolean,
-    price: string,
-    description: string,
-    imageURI: string,
-    currencyCode: string
-}
-
-export interface KilnSettings {
-    supportsInterstitialsAds: boolean,
-    supportsRewardedAds: boolean,
-    supportsBannerAds: boolean,
-    supportsLeaderboards: boolean,
-    supportsPlatformLeaderboardsUI: boolean,
-    supportsIAPs: boolean,
-    interstitials: Array<string>,
-    banners: Array<string>,
-    rewarded: Array<string>,
-    events: Array<string>,
-    leaderboards: Array<KilnLeaderboardSetting>,
-    iaps: Array<KilnIAP>
-}
-
+/**
+ * Kiln API
+ * 
+ * Accessible globally through cc.Kiln.API
+ * 
+ * ```typescript
+ * // Examples:
+ * 
+ * // Initialization
+ * cc.Kiln.API.init();
+ * 
+ * // Check for Rewarded Ads support:
+ * cc.Kiln.API.supportsRewardedAds();
+ * ```
+ */
 export class KilnAPI {
-
     private static _initialized: boolean = false;
     private static _interstitialAds: Map<string, KilnInterstitialAdController> = new Map<string, KilnInterstitialAdController>();
     private static _rewardedAds: Map<string, KilnRewardedAdController> = new Map<string, KilnRewardedAdController>();
     private static _bannerAds: Map<string, KilnBannerAdController> = new Map<string, KilnBannerAdController>();
     private static _leaderboards: Map<string, KilnLeaderboard> = new Map<string, KilnLeaderboard>();
     private static _iap: KilnInAppPurchases;
-    // public static InAppPurchases IAP { get { return _iap; } }
+
+    /**
+     * @internal
+     * "Static class". Remove constructor from docs
+     */
+    constructor() { }
 
     /**
      * Throw an exception if SDK is not initialized
@@ -163,7 +152,7 @@ export class KilnAPI {
     }
 
     /**
-     * Loads a Rewarded Ad. If the current platform doesn't support Rewarded Ads (check SupportsRewardedAds()), 
+     * Loads a Rewarded Ad. If the current platform doesn't support Rewarded Ads (see {@link supportsRewardedAds}), 
      * is provided with an invalid identifier or there's a problem loading the ad, it'll reject the Promise
      * @param identifier The Rewarded Ad identifier
      * @returns Promise
@@ -203,8 +192,8 @@ export class KilnAPI {
     }
 
     /**
-     * Shows a Rewarded Ad. If the platform doesn't support Rewarded Ads (check SupportsRewardedAds()), 
-     * an invalid identifier is provided or the Rewarded Ad hasn't been loaded (check LoadRewardedAd(String)) 
+     * Shows a Rewarded Ad. If the platform doesn't support Rewarded Ads (see {@link supportsRewardedAds}), 
+     * an invalid identifier is provided or the Rewarded Ad hasn't been loaded (see {@link loadRewardedAd}) 
      * it'll reject the Promise
      * @param identifier The Rewarded Ad identifier
      * @returns Promise
@@ -238,7 +227,7 @@ export class KilnAPI {
     
     /**
      * Loads an Interstitial Ad. If the current platform doesn't support Interstitial Ads 
-     * (check SupportsInterstitialAds()), is provided an invalid identifier or there's a 
+     * (see {@link supportsInterstitialAds}), is provided an invalid identifier or there's a 
      * problem loading the ad, it'll reject the Promise
      * @param identifier The Interstitial Ad identifier
      * @returns Promise
@@ -279,8 +268,8 @@ export class KilnAPI {
 
     /**
      * Shows an Interstitial Ad. If the platform doesn't support Interstitial Ads 
-     * (check SupportsInterstitialAds()), an invalid identifier is provided or the 
-     * Interstitial Ad is not loaded (check LoadInterstitialAd(String)), 
+     * (see {@link supportsInterstitialAds}), an invalid identifier is provided or the 
+     * Interstitial Ad is not loaded (see {@link loadInterstitialAd}), 
      * it'll reject the Promise
      * @param identifier The Interstitial Ad identifier
      * @returns Promise
@@ -314,11 +303,11 @@ export class KilnAPI {
 
     /**
      * Loads a Banner Ad. If the current platform doesn't support Banner Ads 
-     * (check SupportsBannerAds()), the provided identifier is invalid or the Banner Ad 
+     * (see {@link supportsBannerAds}), the provided identifier is invalid or the Banner Ad 
      * has already been loaded the Task will get an Exception
      * @param identifier The Banner Ad identifier
-     * @param position Where in the screen to position the Banner Ad. See BannerPosition
-     * @param maxSize The maximum size of the Banner Ad to load. See BannerSize.
+     * @param position Where in the screen to position the Banner Ad. See {@link KilnBannerPosition}
+     * @param maxSize The maximum size of the Banner Ad to load. See {@link KilnBannerSize}
      * @returns Promise
      */
     public static loadBannerAd(identifier: string, position: KilnBannerPosition, maxSize: KilnBannerSize = KilnBannerSize.Width320Height50): Promise<void> {
@@ -357,9 +346,9 @@ export class KilnAPI {
     }
 
     /**
-     * Shows a Banner Ad. If the platform doesn't support Banner Ads (check supportsBannerAds()), 
-     * an invalid identifier is provided or the Banner Ad is not loaded (check loadBannerAd(string, 
-     * BannerPosition, BannerSize)), it'll reject the Promise
+     * Shows a Banner Ad. If the platform doesn't support Banner Ads (see {@link supportsBannerAds}), 
+     * an invalid identifier is provided or the Banner Ad is not loaded (see {@link loadBannerAd}, 
+     * {@link KilnBannerPosition}, {@link KilnBannerSize})), it'll reject the Promise
      * @param identifier The Banner Ad identifier
      * @returns Promise
      */
@@ -392,9 +381,9 @@ export class KilnAPI {
     }
 
     /**
-     * Hides a Banner Ad. If the platform doesn't support Banner Ads (check SupportsBannerAds()), 
+     * Hides a Banner Ad. If the platform doesn't support Banner Ads (see {@link supportsBannerAds}), 
      * an invalid Banner id is provided, or the Banner Ad has not been previously loaded 
-     * (check LoadBannerAd(string, BannerPosition, BannerSize)) it'll reject the Promise
+     * (see {@link loadBannerAd}, {@link KilnBannerPosition}, {@link KilnBannerSize})) it'll reject the Promise
      * @param identifier The Banner Ad identifier
      * @returns Promise
      */
@@ -428,8 +417,8 @@ export class KilnAPI {
     
     /**
      * It destroys the banner ad. If the platform doesn't support banner ads 
-     * (check SupportsBannerAds()), the identifier is invalid or the banner hasn't 
-     * been previously loaded (check LoadBannerAd(string, BannerPosition, BannerSize)) 
+     * (see {@link supportsBannerAds}), the identifier is invalid or the banner hasn't 
+     * been previously loaded (see {@link loadBannerAd}) 
      * it'll reject the Promise.
      * @param identifier The Banner Ad identifier
      * @returns Promise
@@ -465,7 +454,7 @@ export class KilnAPI {
 
     /**
      * Retrieves a list of available for purcharse Product. If the platform doesn't 
-     * support In App Purchases (see SupportsIAP()) it'll reject the Promise
+     * support In App Purchases ({@link supportsIAP}) it'll reject the Promise
      * @param ids List of ids of products to retrieve. Optional parameter, will retrieve all if not provided.  
      * @returns Promise
      */
@@ -494,7 +483,7 @@ export class KilnAPI {
     /**
      * Retrieves a list of active Purchases. By active we mean that they are either for Non 
      * Consumables Products, or Consumables Products that have not been 
-     * consumed yet. If the platform doesn't support In App Purchases (see SupportsIAP()) 
+     * consumed yet. If the platform doesn't support In App Purchases (see {@link supportsIAP}) 
      * it'll reject the Promise
      * @returns Promise
      */
@@ -517,7 +506,7 @@ export class KilnAPI {
 
     /**
      * Launches the purchase flow of a Product. If the platform doesn't support In 
-     * App Purchases (check SupportsIAP()) it'll reject the Promise
+     * App Purchases (see {@link supportsIAP}) it'll reject the Promise
      * @param productId Identifier of the Product to be purchased
      * @param payload Additional data to send with the purchase
      * @returns Promise
@@ -560,7 +549,7 @@ export class KilnAPI {
 
     /**
      * Retrieves the current Player's LeaderboardEntry. If the platform doesn't support 
-     * Leaderboards the Task (check SupportsLeaderboards()) it'll reject the Promise
+     * Leaderboards the Task (see {@link supportsLeaderboards}) it'll reject the Promise
      * @param leaderboardId The Leaderboard identifier
      * @returns Promise
      */
@@ -587,7 +576,7 @@ export class KilnAPI {
 
     /**
      * Sets the current Player's score. If the platform doesn't support Leaderboards 
-     * (check supportsLeaderboards() it'll reject the Promise
+     * (see {@link supportsLeaderboards}) it'll reject the Promise
      * @param leaderboardId Leaderboard identifier
      * @param score Score to set
      * @param data (Optional) If the platform supports it, additional data to set.
@@ -622,7 +611,7 @@ export class KilnAPI {
 
     /**
      * Retrieves a list of LeaderboardEntry for all players. If the platform doesn't 
-     * support leaderboards (check supportsLeaderboards()) it'll reject the Promise
+     * support leaderboards (see {@link supportsLeaderboards}) it'll reject the Promise
      * @param leaderboardId Leaderboard identifier
      * @param amount Amount of LeaderboardEntry to retrieve
      * @param offset Offset from the top of the Leaderboard that LeaderboardEntry will be fetched from
@@ -650,7 +639,7 @@ export class KilnAPI {
     }
 
     /**
-     * Shows native Leaderboard UI if supported (check supportsPlatformLeaderboardUI()). 
+     * Shows native Leaderboard UI if supported (see {@link supportsPlatformLeaderboardUI}). 
      * Otherwise reject the Promise
      * @returns Promise
      */
@@ -693,4 +682,103 @@ export class KilnAPI {
             return Promise.resolve();
         }
     }
+}
+
+export interface KilnRewardedAdResponse {
+    placementId: string,
+    withReward: boolean,
+}
+
+export enum KilnBannerPosition {
+    TopLeft,
+    TopCenter,
+    TopRight,
+    Centered,
+    BottomLeft,
+    BottomCenter,
+    BottomRight
+}
+
+export enum KilnBannerSize {
+    Width300Height50,
+    Width300Height250,
+    Width320Height50,
+    Width336Height280,
+    Width468Height60,
+    Width728Height90,
+    Width970Height90,
+    Width970Height250,
+    ScreenWidthHeight50,
+    ScreenWidthHeight90,
+    ScreenWidthHeight250,
+    ScreenWidthHeight280
+}
+
+export enum KilnProductType
+{
+    Consumable, NonConsumable
+}
+    
+export interface IKilnProduct {
+    getProductID: () => string,
+    getPrice: () => string,
+    getProductType: () => KilnProductType,
+    getDescription: () => string,
+    getImageURI: () => string,
+    getPriceCurrencyCode: () => string,
+    toString: () => string
+}
+
+export interface IKilnPurchase {
+    getDeveloperPayload: () => string,
+    getProductId: () => string,
+    getPurchaseToken: () => string,
+    getPurchaseTime: () => string,
+    getSignedRequest: () => string,
+    toString: () => string
+}
+
+export interface IKilnLeaderboardEntry {
+    getScore: () => number,
+    getRank: () => number,
+    getPlayer: () => IKilnPlayer,
+    toString: () => string,
+}
+
+export interface IKilnPlayer {
+    getId: () => string,
+    getName: () => string,
+    getPhotoURL: () => string,
+}
+
+interface KilnLeaderboardSetting {
+    id: string,
+    ascending: boolean
+}
+
+interface KilnIAP {
+    id: string,
+    consumable: boolean,
+    price: string,
+    description: string,
+    imageURI: string,
+    currencyCode: string
+}
+
+/**
+ * @internal
+ */ 
+export interface KilnSettings {
+    supportsInterstitialsAds: boolean,
+    supportsRewardedAds: boolean,
+    supportsBannerAds: boolean,
+    supportsLeaderboards: boolean,
+    supportsPlatformLeaderboardsUI: boolean,
+    supportsIAPs: boolean,
+    interstitials: Array<string>,
+    banners: Array<string>,
+    rewarded: Array<string>,
+    events: Array<string>,
+    leaderboards: Array<KilnLeaderboardSetting>,
+    iaps: Array<KilnIAP>
 }

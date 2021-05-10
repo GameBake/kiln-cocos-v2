@@ -1,4 +1,4 @@
-import { IKilnProduct, IKilnPurchase, KilnProductType } from "../../bridge";
+import { IKilnProduct, IKilnPurchase, KilnProductType } from "../../api";
 import KilnIAPController from "./iapController";
 
 /**

@@ -1,3 +1,6 @@
+/**
+ * @internal
+ */
 export default class KilnHelper {
     private static _names = new Array<string>(
         "Aaren","Aarika","Abagael","Abagail","Abbe","Abbey","Abbi","Abbie","Abby","Abbye","Abigael","Abigail","Abigale","Abra","Ada","Adah",
