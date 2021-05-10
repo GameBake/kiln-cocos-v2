@@ -1,5 +1,6 @@
 import { KilnSettings, KilnAPI } from "./api";
-import { KilnRewardedAdResponse, KilnBridge, IProduct, IPurchase, ILeaderboardEntry } from "./bridge";
+import { KilnRewardedAdResponse, IKilnProduct, IKilnPurchase, IKilnLeaderboardEntry } from "./api";
+import { KilnBridge } from "./bridge";
 
 interface KilnCallbacks {
     // Init
@@ -29,21 +30,21 @@ interface KilnCallbacks {
     onDestroyBannerAdFailure: (e: Error) => void,
 
     // In App Purchases
-    onGetAvailableProductsSuccess: (products: Array<IProduct>) => void,
+    onGetAvailableProductsSuccess: (products: Array<IKilnProduct>) => void,
     onGetAvailableProductsFailure: (e: Error) => void,
-    onGetPurchasesSuccess: (purchases: Array<IPurchase>) => void,
+    onGetPurchasesSuccess: (purchases: Array<IKilnPurchase>) => void,
     onGetPurchasesFailure: (e: Error) => void,
-    onPurchaseProductSuccess: (purchase: IPurchase) => void,
+    onPurchaseProductSuccess: (purchase: IKilnPurchase) => void,
     onPurchaseProductFailure: (e: Error) => void,
     onConsumePurchasedProductSuccess: () => void,
     onConsumePurchasedProductFailure: (e: Error) => void,
 
     // Leaderboards
-    onGetUserScoreSuccess: (l: ILeaderboardEntry) => void,
+    onGetUserScoreSuccess: (l: IKilnLeaderboardEntry) => void,
     onGetUserScoreFailure: (e: Error) => void,
     onSetUserScoreSuccess: () => void,
     onSetUserScoreFailure: (e: Error) => void,
-    onGetScoresSuccess: (s: Array<ILeaderboardEntry>) => void,
+    onGetScoresSuccess: (s: Array<IKilnLeaderboardEntry>) => void,
     onGetScoresFailure: (e: Error) => void,
     onShowPlatformLeaderboardUISuccess: () => void,
     onShowPlatformLeaderboardUIFailure: (e: Error) => void,

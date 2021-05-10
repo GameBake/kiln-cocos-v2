@@ -1,4 +1,4 @@
-import { IKilnProduct, IKilnPurchase, KilnBannerPosition, KilnBannerSize } from "../../sdk/bridge";
+import { IKilnProduct, IKilnPurchase, KilnBannerPosition, KilnBannerSize } from "../../sdk/api";
 import IdSelector from "../../sdk/mock-platform/scripts/idSelector";
 import logger from "./logger";
 

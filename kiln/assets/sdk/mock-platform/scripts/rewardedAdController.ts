@@ -1,4 +1,4 @@
-import { KilnRewardedAdResponse } from "../../bridge";
+import { KilnRewardedAdResponse } from "../../api";
 
 const {ccclass, property} = cc._decorator;
 
