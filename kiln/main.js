@@ -117,13 +117,56 @@ function onBuildStart(options, callback) {
     callback();
 }
 
+/**
+ * We hook up to this stage of the build pipeline to add the kilnCocosBridge to the Android Project
+ * if it's not there already
+ * @param {*} options 
+ * @param {*} callback 
+ */
+function onBeforeBuildFinish(options, callback) {
+    const fs = require('fs');
+    const path = require('path');
+
+    const gradleSettingsPath = path.join(Editor.Project.path, "/build/jsb-link/frameworks/runtime-src/proj.android-studio/settings.gradle");
+
+    try {
+        var kilnLibrarySettings = "include ':kilnCocosBridge'";
+        
+        var data = fs.readFileSync(gradleSettingsPath, 'utf8')
+        
+        // Check if settings.gradle has kilnCocosBridge added to it
+        if (data.match(/kilnCocosBridge/) === null) {
+            Editor.log("Adding kilnCocosBridge to settings.gradle");
+
+            // Add kilnCocosBridge
+            data = `${kilnLibrarySettings}\n${data}`;
+            
+            fs.writeFile(gradleSettingsPath, data, (err) => {
+                if (err) Editor.error(err);
+                else Editor.success('kilnCocosBridge added to settings.gradle');
+            });
+        }
+        else {
+            Editor.log("kilnCocosBridge present in settings.gradle");
+        }
+    }
+    catch (err) {
+        Editor.error(err)
+    }
+
+    callback();
+}
+
+
 module.exports = {
     load() {
         Editor.Builder.on('build-start', onBuildStart);
+        Editor.Builder.on('before-change-files', onBeforeBuildFinish);
     },
 
     unload() {
         Editor.Builder.removeListener('build-start', onBuildStart);
+        Editor.Builder.removeListener('before-change-files', onBeforeBuildFinish);
     },
 
     messages: {
