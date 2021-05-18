@@ -123,7 +123,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onInitSuccess();");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onInitSuccess();");
                     }
                 });
             }
@@ -133,7 +133,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onInitFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onInitFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -151,7 +151,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onLoadInterstitialAdSuccess();");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onLoadInterstitialAdSuccess();");
                     }
                 });
             }
@@ -161,7 +161,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onLoadInterstitialAdFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onLoadInterstitialAdFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -179,7 +179,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onShowInterstitialAdSuccess();");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onShowInterstitialAdSuccess();");
                     }
                 });
             }
@@ -189,7 +189,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onShowInterstitialAdFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onShowInterstitialAdFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -207,7 +207,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onLoadRewardedAdSuccess();");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onLoadRewardedAdSuccess();");
                     }
                 });
             }
@@ -217,7 +217,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onLoadRewardedAdFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onLoadRewardedAdFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -237,7 +237,7 @@ public class Bridge {
                     public void run() {
                         String boolValue = (response.getWithReward()) ? "true" : "false";
 
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onShowRewardedAdSuccess({placementId: \"" + placementId + "\", withReward: " + boolValue + "});");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onShowRewardedAdSuccess({placementId: \"" + placementId + "\", withReward: " + boolValue + "});");
                     }
                 });
             }
@@ -247,7 +247,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onShowRewardedAdFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onShowRewardedAdFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -270,7 +270,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onLoadBannerAdSuccess();");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onLoadBannerAdSuccess();");
                     }
                 });
             }
@@ -280,7 +280,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onLoadBannerAdFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onLoadBannerAdFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -298,7 +298,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onShowBannerAdSuccess();");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onShowBannerAdSuccess();");
                     }
                 });
             }
@@ -308,7 +308,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onShowBannerAdFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onShowBannerAdFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -326,7 +326,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onHideBannerAdSuccess();");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onHideBannerAdSuccess();");
                     }
                 });
             }
@@ -336,7 +336,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onHideBannerAdFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onHideBannerAdFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -354,7 +354,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onDestroyBannerAdSuccess();");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onDestroyBannerAdSuccess();");
                     }
                 });
             }
@@ -364,7 +364,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onDestroyBannerAdFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onDestroyBannerAdFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -387,7 +387,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onGetAvailableProductsSuccess(" + response +");");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onGetAvailableProductsSuccess(" + response +");");
                     }
                 });
             }
@@ -397,7 +397,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onGetAvailableProductsFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onGetAvailableProductsFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -431,7 +431,7 @@ public class Bridge {
 
         }
         catch (JSONException e) {
-            Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onGetAvailableProductsFailure(new Error(\"" + e.getMessage() + "\"));");
+            Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onGetAvailableProductsFailure(new Error(\"" + e.getMessage() + "\"));");
         }
     }
 
@@ -454,7 +454,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onGetPurchasesSuccess(" + response +");");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onGetPurchasesSuccess(" + response +");");
                     }
                 });
 
@@ -465,7 +465,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onGetPurchasesFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onGetPurchasesFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -493,7 +493,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onPurchaseProductSuccess(" + Helper.purchaseToJSObject(purchase) +");");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onPurchaseProductSuccess(" + Helper.purchaseToJSObject(purchase) +");");
                     }
                 });
             }
@@ -503,7 +503,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onPurchaseProductFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onPurchaseProductFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -521,7 +521,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onConsumePurchasedProductSuccess();");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onConsumePurchasedProductSuccess();");
                     }
                 });
             }
@@ -531,7 +531,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onConsumePurchasedProductFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onConsumePurchasedProductFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -549,7 +549,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onGetUserScoreSuccess(" + Helper.scoreToJSObject(score) + ");");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onGetUserScoreSuccess(" + Helper.scoreToJSObject(score) + ");");
                     }
                 });
             }
@@ -559,7 +559,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onGetUserScoreFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onGetUserScoreFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -579,7 +579,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onSetUserScoreSuccess();");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onSetUserScoreSuccess();");
                     }
                 });
             }
@@ -589,7 +589,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onSetUserScoreFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onSetUserScoreFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -618,7 +618,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onGetScoresSuccess(" + response +");");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onGetScoresSuccess(" + response +");");
                     }
                 });
             }
@@ -628,7 +628,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onGetScoresFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onGetScoresFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -645,7 +645,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onShowPlatformLeaderboardUISuccess();");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onShowPlatformLeaderboardUISuccess();");
                     }
                 });
             }
@@ -655,7 +655,7 @@ public class Bridge {
                 app.runOnGLThread(new Runnable() {
                     @Override
                     public void run() {
-                        Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onShowPlatformLeaderboardUIFailure(new Error(\"" + e.getMessage() + "\"));");
+                        Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onShowPlatformLeaderboardUIFailure(new Error(\"" + e.getMessage() + "\"));");
                     }
                 });
             }
@@ -673,7 +673,7 @@ public class Bridge {
             app.runOnGLThread(new Runnable() {
                 @Override
                 public void run() {
-                    Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onSubmitAnalyticsEventSuccess();");
+                    Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onSubmitAnalyticsEventSuccess();");
                 }
             });
         }
@@ -681,7 +681,7 @@ public class Bridge {
             app.runOnGLThread(new Runnable() {
                 @Override
                 public void run() {
-                    Cocos2dxJavascriptJavaBridge.evalString("cc.Kiln.Callbacks.onSubmitAnalyticsEventFailure(new Error(\"" + e.getMessage() + "\"));");
+                    Cocos2dxJavascriptJavaBridge.evalString("Kiln.Callbacks.onSubmitAnalyticsEventFailure(new Error(\"" + e.getMessage() + "\"));");
                 }
             });
         }

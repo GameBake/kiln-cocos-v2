@@ -2,22 +2,22 @@ import KilnBannerAdController from "./mock-platform/scripts/bannerAdController";
 import KilnInAppPurchases from "./mock-platform/scripts/inAppPurchases";
 import KilnInterstitialAdController from "./mock-platform/scripts/interstitialAdController";
 import KilnLeaderboard from "./mock-platform/scripts/leaderboard";
-import PlatformLeaderboardController from "./mock-platform/scripts/platformLeaderboardController";
+import KilnPlatformLeaderboardController from "./mock-platform/scripts/platformLeaderboardController";
 import KilnRewardedAdController from "./mock-platform/scripts/rewardedAdController";
 
 /**
  * Kiln API
  * 
- * Accessible globally through cc.Kiln.API
+ * Accessible globally through Kiln.API
  * 
  * ```typescript
  * // Examples:
  * 
  * // Initialization
- * cc.Kiln.API.init();
+ * Kiln.API.init();
  * 
  * // Check for Rewarded Ads support:
- * cc.Kiln.API.supportsRewardedAds();
+ * Kiln.API.supportsRewardedAds();
  * ```
  */
 export class KilnAPI {
@@ -48,28 +48,40 @@ export class KilnAPI {
      */
     public static init(): Promise<void> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.init();
+            return Kiln.Bridge.init();
         }
         else {
             if (this._initialized) {
                 return Promise.reject(new Error("Kiln already initialized"));
             }
 
-            this._initialized = true;
+            return new Promise((resolve, reject) => {
+                cc.resources.load("kiln/kilnSettings", (err, res: cc.JsonAsset) => {
+                    if (err) {
+                        cc.error("Error loading Kiln Settings");
+                        reject(err);
+                    }
+                    else {
+                        Kiln.EditorSettings = res.json;
 
-            if (this.supportsLeaderboards()) {
-                cc.Kiln.EditorSettings.leaderboards.forEach((l) => {
-                    // KilnLeaderboard.reset(l.id);
-                    const leaderboard = KilnLeaderboard.isSaved(l.id) ? KilnLeaderboard.load(l.id) : new KilnLeaderboard(l.id, 100, l.ascending);
-                    this._leaderboards.set(l.id, leaderboard);
+                        this._initialized = true;
+    
+                        if (this.supportsLeaderboards()) {
+                            Kiln.EditorSettings.leaderboards.forEach((l) => {
+                                // KilnLeaderboard.reset(l.id);
+                                const leaderboard = KilnLeaderboard.isSaved(l.id) ? KilnLeaderboard.load(l.id) : new KilnLeaderboard(l.id, 100, l.ascending);
+                                this._leaderboards.set(l.id, leaderboard);
+                            });
+                        }
+            
+                        if (this.supportsIAP()) {
+                            this._iap = new KilnInAppPurchases();
+                        }
+            
+                        resolve();
+                    }
                 });
-            }
-
-            if (this.supportsIAP()) {
-                this._iap = new KilnInAppPurchases();
-            }
-
-            return Promise.resolve();
+            });
         }
     }
 
@@ -79,10 +91,10 @@ export class KilnAPI {
      */
     public static supportsInterstitialAds(): boolean {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.supportsInterstitialAds();
+            return Kiln.Bridge.supportsInterstitialAds();
         }
         else {
-            return cc.Kiln.EditorSettings.supportsInterstitialsAds;
+            return Kiln.EditorSettings.supportsInterstitialsAds;
         }
     }
 
@@ -92,10 +104,10 @@ export class KilnAPI {
      */
     public static supportsRewardedAds(): boolean {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.supportsRewardedAds();
+            return Kiln.Bridge.supportsRewardedAds();
         }
         else {
-            return cc.Kiln.EditorSettings.supportsRewardedAds;
+            return Kiln.EditorSettings.supportsRewardedAds;
         }
     }
 
@@ -105,10 +117,10 @@ export class KilnAPI {
      */
     public static supportsBannerAds(): boolean {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.supportsBannerAds();
+            return Kiln.Bridge.supportsBannerAds();
         }
         else {
-            return cc.Kiln.EditorSettings.supportsBannerAds;
+            return Kiln.EditorSettings.supportsBannerAds;
         }
     }
     
@@ -118,10 +130,10 @@ export class KilnAPI {
      */
     public static supportsIAP(): boolean {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.supportsIAP();
+            return Kiln.Bridge.supportsIAP();
         }
         else {
-            return cc.Kiln.EditorSettings.supportsIAPs;
+            return Kiln.EditorSettings.supportsIAPs;
         }
     }
 
@@ -131,10 +143,10 @@ export class KilnAPI {
      */
     public static supportsLeaderboards(): boolean {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.supportsLeaderboards();
+            return Kiln.Bridge.supportsLeaderboards();
         }
         else {
-            return cc.Kiln.EditorSettings.supportsLeaderboards;
+            return Kiln.EditorSettings.supportsLeaderboards;
         }
     }
 
@@ -144,10 +156,10 @@ export class KilnAPI {
      */
     public static supportsPlatformLeaderboardsUI(): boolean {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.supportsPlatformLeaderboardsUI();
+            return Kiln.Bridge.supportsPlatformLeaderboardsUI();
         }
         else {
-            return cc.Kiln.EditorSettings.supportsPlatformLeaderboardsUI;
+            return Kiln.EditorSettings.supportsPlatformLeaderboardsUI;
         }
     }
 
@@ -159,7 +171,7 @@ export class KilnAPI {
      */
     public static loadRewardedAd(identifier: string): Promise<void> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.loadRewardedAd(identifier);
+            return Kiln.Bridge.loadRewardedAd(identifier);
         }
         else {
             this.checkInitialized();
@@ -169,7 +181,7 @@ export class KilnAPI {
                     reject(new Error("Rewarded Ads not supported."));
                 }
     
-                if (cc.Kiln.EditorSettings.rewarded.indexOf(identifier) == -1) {
+                if (Kiln.EditorSettings.rewarded.indexOf(identifier) == -1) {
                     reject(new Error(`Invalid Rewarded Placement ID: ${identifier}`));
                 }
 
@@ -200,7 +212,7 @@ export class KilnAPI {
      */
     public static showRewardedAd(identifier: string): Promise<KilnRewardedAdResponse> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.showRewardedAd(identifier);
+            return Kiln.Bridge.showRewardedAd(identifier);
         }
         else {
             this.checkInitialized();
@@ -210,7 +222,7 @@ export class KilnAPI {
                     reject(new Error("Rewarded Ads not supported."));
                 }
     
-                if (cc.Kiln.EditorSettings.rewarded.indexOf(identifier) == -1) {
+                if (Kiln.EditorSettings.rewarded.indexOf(identifier) == -1) {
                     reject(new Error(`Invalid Rewarded Placement ID: ${identifier}`));
                 }
     
@@ -234,7 +246,7 @@ export class KilnAPI {
      */
     public static loadInterstitialAd(identifier: string): Promise<void> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.loadInterstitialdAd(identifier);
+            return Kiln.Bridge.loadInterstitialdAd(identifier);
         }
         else {
             this.checkInitialized();
@@ -244,7 +256,7 @@ export class KilnAPI {
                     reject(new Error("Interstitial Ads not supported."));
                 }
     
-                if (cc.Kiln.EditorSettings.interstitials.indexOf(identifier) == -1) {
+                if (Kiln.EditorSettings.interstitials.indexOf(identifier) == -1) {
                     reject(new Error(`Invalid Interstitial Placement ID: ${identifier}`));
                 }
 
@@ -276,7 +288,7 @@ export class KilnAPI {
      */
     public static showInterstitialAd(identifier: string): Promise<void> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.showInterstitialAd(identifier);
+            return Kiln.Bridge.showInterstitialAd(identifier);
         }
         else {
             this.checkInitialized();
@@ -286,7 +298,7 @@ export class KilnAPI {
                     reject(new Error("Interstitial Ads not supported."));
                 }
     
-                if (cc.Kiln.EditorSettings.interstitials.indexOf(identifier) == -1) {
+                if (Kiln.EditorSettings.interstitials.indexOf(identifier) == -1) {
                     reject(new Error(`Invalid Interstitial Placement ID: ${identifier}`));
                 }
     
@@ -312,7 +324,7 @@ export class KilnAPI {
      */
     public static loadBannerAd(identifier: string, position: KilnBannerPosition, maxSize: KilnBannerSize = KilnBannerSize.Width320Height50): Promise<void> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.loadBannerAd(identifier, position, maxSize);
+            return Kiln.Bridge.loadBannerAd(identifier, position, maxSize);
         }
         else {
             this.checkInitialized();
@@ -322,7 +334,7 @@ export class KilnAPI {
                     reject(new Error("Banner Ads not supported."));
                 }
     
-                if (cc.Kiln.EditorSettings.banners.indexOf(identifier) == -1) {
+                if (Kiln.EditorSettings.banners.indexOf(identifier) == -1) {
                     reject(new Error(`Invalid Banner Placement ID: ${identifier}`));
                 }
 
@@ -354,7 +366,7 @@ export class KilnAPI {
      */
     public static showBannerAd(identifier: string): Promise<void> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.showBannerAd(identifier);
+            return Kiln.Bridge.showBannerAd(identifier);
         }
         else {
             this.checkInitialized();
@@ -364,7 +376,7 @@ export class KilnAPI {
                     reject(new Error("Banner Ads not supported."));
                 }
     
-                if (cc.Kiln.EditorSettings.banners.indexOf(identifier) == -1) {
+                if (Kiln.EditorSettings.banners.indexOf(identifier) == -1) {
                     reject(new Error(`Invalid Banner Placement ID: ${identifier}`));
                 }
     
@@ -389,7 +401,7 @@ export class KilnAPI {
      */
     public static hideBannerAd(identifier: string): Promise<void> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.hideBannerAd(identifier);
+            return Kiln.Bridge.hideBannerAd(identifier);
         }
         else {
             this.checkInitialized();
@@ -399,7 +411,7 @@ export class KilnAPI {
                     reject(new Error("Banner Ads not supported."));
                 }
     
-                if (cc.Kiln.EditorSettings.banners.indexOf(identifier) == -1) {
+                if (Kiln.EditorSettings.banners.indexOf(identifier) == -1) {
                     reject(new Error(`Invalid Banner Placement ID: ${identifier}`));
                 }
     
@@ -425,7 +437,7 @@ export class KilnAPI {
      */
     public static destroyBannerAd(identifier: string): Promise<void> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.destroyBannerAd(identifier);
+            return Kiln.Bridge.destroyBannerAd(identifier);
         }
         else {
             this.checkInitialized();
@@ -435,7 +447,7 @@ export class KilnAPI {
                     reject(new Error("Banner Ads not supported."));
                 }
     
-                if (cc.Kiln.EditorSettings.banners.indexOf(identifier) == -1) {
+                if (Kiln.EditorSettings.banners.indexOf(identifier) == -1) {
                     reject(new Error(`Invalid Banner Placement ID: ${identifier}`));
                 }
     
@@ -461,10 +473,10 @@ export class KilnAPI {
     public static getAvailableProducts(ids?: Array<string>): Promise<Array<IKilnProduct>> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
             if (ids == null) {
-                return cc.Kiln.Bridge.getAvailableProducts();   
+                return Kiln.Bridge.getAvailableProducts();   
             }
             else {
-                return cc.Kiln.Bridge.getAvailableProductsFromList(ids);
+                return Kiln.Bridge.getAvailableProductsFromList(ids);
             }
         }
         else {
@@ -489,7 +501,7 @@ export class KilnAPI {
      */
     public static getPurchases(): Promise<Array<IKilnPurchase>> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.getPurchases();
+            return Kiln.Bridge.getPurchases();
         }
         else {
             this.checkInitialized();
@@ -513,7 +525,7 @@ export class KilnAPI {
      */
     public static purchaseProduct(productId: string, payload: string): Promise<IKilnPurchase> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.purchaseProduct(productId, payload);
+            return Kiln.Bridge.purchaseProduct(productId, payload);
         }
         else {
             this.checkInitialized();
@@ -534,7 +546,7 @@ export class KilnAPI {
      */
     public static consumePurchasedProduct(purchaseToken: string): Promise<void> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.consumePurchasedProduct(purchaseToken);
+            return Kiln.Bridge.consumePurchasedProduct(purchaseToken);
         }
         else {
             this.checkInitialized();
@@ -555,7 +567,7 @@ export class KilnAPI {
      */
     public static getUserScore(leaderboardId: string): Promise<IKilnLeaderboardEntry> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.getUserScore(leaderboardId);
+            return Kiln.Bridge.getUserScore(leaderboardId);
         }
         else {
             this.checkInitialized();
@@ -584,7 +596,7 @@ export class KilnAPI {
      */
     public static setUserScore(leaderboardId: string, score: number, data?: object): Promise<void> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.setUserScore(leaderboardId, score, data);
+            return Kiln.Bridge.setUserScore(leaderboardId, score, data);
         }
         else {
             this.checkInitialized();
@@ -619,7 +631,7 @@ export class KilnAPI {
      */
     public static getScores(leaderboardId: string, amount: number = 10, offset: number = 0): Promise<Array<IKilnLeaderboardEntry>> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.getScores(leaderboardId, amount, offset);
+            return Kiln.Bridge.getScores(leaderboardId, amount, offset);
         }
         else {
             this.checkInitialized();
@@ -645,7 +657,7 @@ export class KilnAPI {
      */
     public static showPlatformLeaderboardUI(): Promise<void> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.showPlatformLeaderboardUI();
+            return Kiln.Bridge.showPlatformLeaderboardUI();
         }
         else {
             this.checkInitialized();
@@ -660,7 +672,7 @@ export class KilnAPI {
                         reject(err);
                     }
                     else {
-                        const platformLeaderboards: PlatformLeaderboardController = cc.instantiate(res).getComponent("platformLeaderboardController")
+                        const platformLeaderboards: KilnPlatformLeaderboardController = cc.instantiate(res).getComponent("platformLeaderboardController")
                         platformLeaderboards.show(() => { return resolve(); });
                     }
                 });
@@ -676,7 +688,7 @@ export class KilnAPI {
      */
     public static submitAnalyticsEvent(eventId: string): Promise<void> {
         if (cc.sys.os == cc.sys.OS_ANDROID) {
-            return cc.Kiln.Bridge.submitAnalyticsEvent(eventId);
+            return Kiln.Bridge.submitAnalyticsEvent(eventId);
         }
         else {
             return Promise.resolve();

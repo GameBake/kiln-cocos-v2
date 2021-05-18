@@ -53,7 +53,6 @@ interface KilnCallbacks {
     onSubmitAnalyticsEventSuccess: () => void,
     onSubmitAnalyticsEventFailure: (e: Error) => void
 }
-
 interface KilnSetup {
     API: typeof KilnAPI,
     Bridge: typeof KilnBridge,
@@ -62,24 +61,12 @@ interface KilnSetup {
 }
 
 declare global {
-    namespace cc {
-        let Kiln: KilnSetup;
-    }
+    var Kiln: KilnSetup;
 }
 
-cc.Kiln = {
+(window as any).Kiln = {
     API: KilnAPI,
     Bridge: KilnBridge,
     Callbacks: {} as KilnCallbacks,
     EditorSettings: {} as KilnSettings
 }
-
-cc.resources.load("kiln/kilnSettings", (err, res: cc.JsonAsset) => {
-    if (err) {
-        cc.error("Error loading Kiln Settings");
-        cc.error(err);
-    }
-    else {
-        cc.Kiln.EditorSettings = res.json;
-    }
-});
