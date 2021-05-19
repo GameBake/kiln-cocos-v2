@@ -32,16 +32,15 @@ export default class KilnLeaderboard {
      * @param id 
      * @returns 
      */
-    public static getStorageKey(id: string): string
-    {
+    public static getStorageKey(id: string): string {
         return `Kiln:Leaderboards:${id}`;
     }
 
-    /// <summary>
-    /// Creates an instance of a Leaderboard from a persisted json file
-    /// </summary>
-    /// <param name="json"></param>
-    /// <returns></returns>
+    /**
+     * Creates an instance of a Leaderboard from a persisted json data
+     * @param id 
+     * @returns 
+     */
     public static load(id: string): KilnLeaderboard {
         if (!this.isSaved(id)) {
             throw new Error(`Leaderboard ${id} not persisted`);
@@ -60,11 +59,11 @@ export default class KilnLeaderboard {
         return leaderboard;
     }
 
-    /// <summary>
-    /// Returns whether a saved file for a given Leaderboard id is present or not
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /**
+     * Returns whether a saved file for a given Leaderboard id is present or not
+     * @param id 
+     * @returns 
+     */
     public static isSaved(id: string): boolean {
         return cc.sys.localStorage.getItem(KilnLeaderboard.getStorageKey(id)) ? true : false;
     }
@@ -108,8 +107,7 @@ export default class KilnLeaderboard {
      * Returns a JSON representation of the leaderboard
      * @returns 
      */
-    public getSaveData(): string
-    {
+    public getSaveData(): string {
         const result: KilnLeaderboardData = {
             id: this._id,
             ascending: this._ascending,
@@ -245,7 +243,7 @@ export default class KilnLeaderboard {
                     getPhotoURL: () => "",
                 }
 
-                const rank = offset + i + 1
+                const rank = i + 1
                 const entry: IKilnLeaderboardEntry = {
                     getScore: () => dataList[i].score,
                     getRank: () => rank,

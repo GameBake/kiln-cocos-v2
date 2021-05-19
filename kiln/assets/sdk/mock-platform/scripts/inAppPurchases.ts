@@ -20,7 +20,7 @@ export default class KilnInAppPurchases {
      * 
      */
     constructor() {
-        cc.Kiln.EditorSettings.iaps.forEach((iap) => {
+        Kiln.EditorSettings.iaps.forEach((iap) => {
             let product: IKilnProduct = {
                 getProductID: () => iap.id,
                 getPrice: () => iap.price,

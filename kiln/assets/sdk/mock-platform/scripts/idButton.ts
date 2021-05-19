@@ -1,7 +1,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class IdButton extends cc.Component {
+export default class KilnIdButton extends cc.Component {
 
     @property(cc.Label)
     label: cc.Label = null;

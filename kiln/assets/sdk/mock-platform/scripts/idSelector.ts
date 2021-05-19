@@ -1,14 +1,14 @@
-import IDButton from "./idButton";
+import KilnIdButton from "./idButton";
 
 const { ccclass, property } = cc._decorator;
 
-export interface IDSelectorCallbacks {
+interface IDSelectorCallbacks {
     select: (id: string) => void,
     cancel: (error: Error) => void
 };
 
 @ccclass
-export default class IdSelector extends cc.Component {
+export default class KilnIdSelector extends cc.Component {
 
     @property(cc.Node)
     contentParent: cc.Node = null;
@@ -19,7 +19,7 @@ export default class IdSelector extends cc.Component {
     @property(cc.Prefab)
     idButtonPrefab: cc.Prefab = null;
 
-    public _callbacks: IDSelectorCallbacks = {} as IDSelectorCallbacks;
+    private _callbacks: IDSelectorCallbacks = {} as IDSelectorCallbacks;
 
 
     // LIFE-CYCLE CALLBACKS:
@@ -50,7 +50,7 @@ export default class IdSelector extends cc.Component {
         let inputId = cc.instantiate(this.idInputPrefab);
         inputId.parent = this.contentParent;
 
-        let idButton: IDButton = inputId.getComponent("idButton")
+        let idButton: KilnIdButton = inputId.getComponent("idButton")
         idButton.onPressCallback = this._callbacks.select;
 
         // Create a button per Id
@@ -58,7 +58,7 @@ export default class IdSelector extends cc.Component {
             let button = cc.instantiate(this.idButtonPrefab);
             button.parent = this.contentParent;
             
-            let idButton: IDButton = button.getComponent("idButton")
+            let idButton: KilnIdButton = button.getComponent("idButton")
             idButton.onPressCallback = this._callbacks.select;
             idButton.setReturnId(id);
         });

@@ -8,8 +8,6 @@ export default class KilnRewardedAdController extends cc.Component {
     @property(cc.Label)
     placementIdLabel: cc.Label = null;
 
-    private _countdown: number;
-
     private _callback: (r: KilnRewardedAdResponse) => void;
 
     onLoad() {

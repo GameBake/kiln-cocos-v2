@@ -1,7 +1,7 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class logger extends cc.Component {
+export default class Logger extends cc.Component {
 
     @property(cc.RichText)
     console: cc.RichText = null;

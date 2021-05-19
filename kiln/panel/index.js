@@ -391,7 +391,7 @@ var editorPanel = {
         this.$newIAPButton.addEventListener('confirm', () => { this.actions.addIAP(); });
         this.$resetIAPsButton.addEventListener('confirm', () => { this.actions.resetIAPs(); });
         this.$newLeaderboardButton.addEventListener('confirm', () => { this.actions.addLeaderboard(); });
-        this.$newEventButton.addEventListener('confirm', () => { this.actions.newEvent(); });
+        this.$newEventButton.addEventListener('confirm', () => { this.actions.addEvent(); });
         this.$saveSettingsButton.addEventListener('confirm', () => { this.actions.saveSettings(); });
     },
 
